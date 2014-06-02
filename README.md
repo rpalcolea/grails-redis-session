@@ -1,5 +1,4 @@
 # Redis Database Session Grails Plugin
-====================
 
 ## Summary
 Stores HTTP sessions in a Redis.
