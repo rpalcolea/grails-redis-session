@@ -10,25 +10,4 @@
     <resource>grails.plugin.redissession.RedisPersistentService</resource>
     <resource>grails.plugin.redissession.RedisSessionCleanupService</resource>
   </resources>
-  <repositories>
-    <repository name='grailsCentral' url='http://plugins.grails.org' />
-    <repository name='http://repo.grails.org/grails/plugins' url='http://repo.grails.org/grails/plugins/' />
-    <repository name='http://repo.grails.org/grails/core' url='http://repo.grails.org/grails/core/' />
-    <repository name='grailsCore' url='http://svn.codehaus.org/grails/trunk/grails-plugins' />
-    <repository name='mavenCentral' url='http://repo1.maven.org/maven2/' />
-    <repository name='http://grails.org/plugins' url='http://grails.org/plugins' />
-  </repositories>
-  <dependencies />
-  <plugins>
-    <compile>
-      <plugin group='org.grails.plugins' name='database-session' version='1.2.1' />
-      <plugin group='org.grails.plugins' name='redis' version='1.5.5' />
-      <plugin group='org.grails.plugins' name='webxml' version='1.4.1' />
-    </compile>
-  </plugins>
-  <runtimePluginRequirements>
-    <plugin name='database-session' version='1.2.1 &gt; *' />
-    <plugin name='redis' version='1.5.2 &gt; *' />
-  </runtimePluginRequirements>
-  <behavior />
 </plugin>
