@@ -4,8 +4,8 @@
 Stores HTTP sessions in a Redis.
 
 ## Requirements
-[Database Session Plugin](http://grails.org/plugin/database-session) 1.2.1+
-[Redis Plugin](http://grails.org/plugin/redis) 1.5.2+
+1. [Database Session Plugin](http://grails.org/plugin/database-session) 1.2.1+
+2. [Redis Plugin](http://grails.org/plugin/redis) 1.5.2+
 
 ## Description
 
