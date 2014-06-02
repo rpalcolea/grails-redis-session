@@ -20,5 +20,9 @@ grails.project.dependency.resolution = {
             export = false
         }
         compile(":redis:1.5.5", ":database-session:1.2.1", ":webxml:1.4.1")
+
+        build ':release:2.2.1', ':rest-client-builder:1.0.3', {
+            export = false
+        }
     }
 }
