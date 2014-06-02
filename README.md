@@ -19,7 +19,7 @@ It registers two aliases inside the doWithSpring closure. With this, it can work
 
 ```groovy
 springConfig.addAlias 'gormPersisterService', 'redisPersistentService'
-springConfig.addAlias 'databaseCleanupService', 'redisSessionCleanupService
+springConfig.addAlias 'databaseCleanupService', 'redisSessionCleanupService'
 ```
 
 ## Usage
