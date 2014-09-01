@@ -9,7 +9,7 @@ Stores HTTP sessions in a Redis.
 
 ## Description
 
-This plugin lets you store HTTP session data in a mongodb using [Database Session Plugin](http://grails.org/plugin/database-session).
+This plugin lets you store HTTP session data in a redis store using [Database Session Plugin](http://grails.org/plugin/database-session).
 
 ## Artifacts
 
