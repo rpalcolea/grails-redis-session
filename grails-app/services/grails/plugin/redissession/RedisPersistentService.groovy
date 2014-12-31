@@ -204,7 +204,7 @@ class RedisPersistentService implements Persister  {
             def sessionProperties = redis.hgetAll("${SESSION_PREFIX}${sessionId}")
             Long lastAccessedTime = redis.zscore(LAST_ACCESSED_TIME_ZSET, sessionId)?.toLong()
             checkInvalidated(sessionProperties.get(INVALIDATED), lastAccessedTime, sessionProperties.get(MAX_INACTIVE_INTERVAL))
-            maxInterval = sessionProperties.get(MAX_INACTIVE_INTERVAL)
+            maxInterval = sessionProperties.get(MAX_INACTIVE_INTERVAL)?.toInteger()
         }
         return maxInterval
     }
