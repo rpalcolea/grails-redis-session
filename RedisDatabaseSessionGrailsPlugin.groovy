@@ -3,7 +3,7 @@ import grails.plugin.redissession.RedisSessionCleanupService
 import grails.plugin.databasesession.SessionProxyFilter
 
 class RedisDatabaseSessionGrailsPlugin {
-    def version = "1.0.0"
+    def version = "1.1"
     def grailsVersion = "2.0 > *"
     def loadAfter = ["database-session", "redis"]
     def dependsOn = ["database-session":"1.2.1 > *", "redis":"1.5.2 > *"]
