@@ -1,5 +1,8 @@
 package grails.plugin.redissession
 
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import grails.plugin.redissession.serializers.*
 import grails.plugin.databasesession.InvalidatedSessionException
 import grails.plugin.databasesession.Persister
 import grails.plugin.databasesession.SessionProxyFilter
@@ -15,6 +18,7 @@ class RedisPersistentService implements Persister  {
     static transactional = false
     def redisService
     def grailsApplication
+    def gsonService
 
     private static final String MAX_INACTIVE_INTERVAL = "maxInactiveInterval"
     private static final String INVALIDATED = "invalidated"
@@ -68,9 +72,13 @@ class RedisPersistentService implements Persister  {
                 //Updating the session last accessed time in the zset
                 redis.zadd(LAST_ACCESSED_TIME_ZSET, System.currentTimeMillis(), sessionId)
 
-                def serializedAttribute = redis.hget((serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}")), serialize(key))
-
-                attribute = deserialize(serializedAttribute)
+                if (useJson()) {
+                    def serializedAttribute = redis.hget((serializeAsJson("${SESSION_ATTRIBUTES_PREFIX}${sessionId}")), serializeAsJson(key))
+                    attribute = deserializeJson(serializedAttribute)
+                } else {
+                    def serializedAttribute = redis.hget((serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}")), serialize(key))
+                    attribute = deserialize(serializedAttribute)
+                }
 
             }
 
@@ -113,7 +121,11 @@ class RedisPersistentService implements Persister  {
                 //Updating the session last accessed time in the zset
                 redis.zadd(LAST_ACCESSED_TIME_ZSET, System.currentTimeMillis(), sessionId)
 
-                redis.hset(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"), serialize(key), serialize(value))
+                if (useJson()) {
+                    redis.hset(serializeAsJson("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"), serializeAsJson(key), serializeAsJson(value))
+                } else {
+                    redis.hset(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"), serialize(key), serialize(value))
+                }
 
             }
         }
@@ -257,7 +269,26 @@ class RedisPersistentService implements Persister  {
         }.readObject()
     }
 
-    public byte[] serialize(value) {
+    public deserializeJson(def serialized) {
+        if (!serialized) {
+            return null
+        }
+
+        def deserializedObject
+
+        try {
+            JsonParser parser = new JsonParser()
+            JsonObject jsonObject = parser.parse(serialized).getAsJsonObject()
+            deserializedObject = gsonService.deserializeJson(jsonObject)
+        } catch (Exception e) {
+            log.error("Unable to deserialize object as JSON.", e)
+            return deserialize(serialized)
+        }
+
+        return deserializedObject
+    }
+
+    public byte[] serialize(def value) {
         if (value == null) {
             return null
         }
@@ -266,5 +297,27 @@ class RedisPersistentService implements Persister  {
 
         new ObjectOutputStream(baos).writeObject value
         baos.toByteArray()
+    }
+
+    public serializeAsJson(def value) {
+        if (value == null) {
+            return null
+        }
+
+        String serializedJson
+
+        try {
+            serializedJson = gsonService.serializeAsJson(value)
+        } catch (Exception e) {
+            log.error("Unable to serialize value as JSON.", e)
+            return serialize(value)
+        }
+
+        return serializedJson
+    }
+
+    private boolean useJson() {
+        def useJson = grailsApplication.config.grails.plugin.redisdatabasesession.usejson
+        return useJson instanceof Boolean ?: false
     }
 }

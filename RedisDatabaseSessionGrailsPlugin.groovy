@@ -3,7 +3,7 @@ import grails.plugin.redissession.RedisSessionCleanupService
 import grails.plugin.databasesession.SessionProxyFilter
 
 class RedisDatabaseSessionGrailsPlugin {
-    def version = "1.1"
+    def version = "1.2"
     def grailsVersion = "2.0 > *"
     def loadAfter = ["database-session", "redis"]
     def dependsOn = ["database-session":"1.2.1 > *", "redis":"1.5.2 > *"]
@@ -26,6 +26,17 @@ Stores HTTP sessions in a Redis data store.
     def doWithSpring = {
         springConfig.addAlias 'gormPersisterService', 'redisPersistentService'
         springConfig.addAlias 'databaseCleanupService', 'redisSessionCleanupService'
+    }
+
+    def doWithApplicationContext = { applicationContext ->
+        if (useJson(application.config)) {
+            applicationContext.gsonService.initialize()
+        }
+    }
+
+    private boolean useJson(config) {
+        def enabled = config.grails.plugin.redisdatabasesession.usejson
+        enabled instanceof Boolean ?: false
     }
 
 }
