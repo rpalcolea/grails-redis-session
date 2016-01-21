@@ -18,7 +18,7 @@ Stores HTTP sessions in a Redis data store.
     def license = "APACHE"
 
     def organization = [name: "TollFreeForwarding", url: "http://www.tollfreeforwarding.com/"]
-    def developers = [[name: "Raj Govindarajan", email: ""]]
+    def developers = [[name: "Raj Govindarajan", email: ""],[name: "Brit Indrelie", email: "brit.indrelie@objectpartners.com"]]
     def issueManagement = [system: "Github", url: "https://github.com/rpalcolea/grails-redis-session/issues"]
     def scm = [url: "https://github.com/rpalcolea/grails-redis-session/"]
 
