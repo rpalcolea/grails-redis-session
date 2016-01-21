@@ -9,14 +9,19 @@ import com.google.gson.JsonPrimitive
 import com.google.gson.JsonSerializationContext
 import com.google.gson.JsonSerializer
 import com.google.gson.JsonDeserializer
-import org.codehaus.groovy.grails.web.context.ServletContextHolder
-import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes
+import org.springframework.context.ApplicationContext
 
 import java.lang.reflect.Type
 
 class ArrayListSerializer implements JsonSerializer<ArrayList>, JsonDeserializer<ArrayList> {
 
-    def gsonService = ServletContextHolder.servletContext.getAttribute(GrailsApplicationAttributes.APPLICATION_CONTEXT).gsonService
+    ApplicationContext applicationContext
+
+    ArrayListSerializer(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext
+    }
+
+    def gsonService = applicationContext.gsonService
 
     JsonElement serialize(ArrayList arrayList, Type type, JsonSerializationContext context) {
         JsonObject result = new JsonObject()

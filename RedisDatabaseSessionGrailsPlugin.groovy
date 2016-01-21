@@ -30,7 +30,7 @@ Stores HTTP sessions in a Redis data store.
 
     def doWithApplicationContext = { applicationContext ->
         if (useJson(application.config)) {
-            applicationContext.gsonService.initialize()
+            applicationContext.gsonService.initialize(applicationContext)
         }
     }
 

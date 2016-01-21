@@ -7,6 +7,7 @@ import com.google.gson.JsonPrimitive
 import com.google.gson.JsonSerializationContext
 import com.google.gson.JsonSerializer
 import grails.test.spock.IntegrationSpec
+import grails.util.Holders
 import groovy.json.StringEscapeUtils
 import java.lang.reflect.Type
 import spock.lang.Unroll
@@ -17,7 +18,7 @@ class GsonServiceSpec extends IntegrationSpec {
     def gsonService
 
     def setup() {
-        gsonService.initialize()
+        gsonService.initialize(Holders.getApplicationContext())
     }
 
     def cleanup() {

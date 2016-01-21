@@ -9,13 +9,19 @@ import com.google.gson.JsonParser
 import com.google.gson.JsonPrimitive
 import com.google.gson.JsonSerializationContext
 import com.google.gson.JsonSerializer
-import org.codehaus.groovy.grails.web.context.ServletContextHolder
-import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes
+import org.springframework.context.ApplicationContext
 
 import java.lang.reflect.Type
 
 class HashSetSerializer implements JsonSerializer<HashSet>, JsonDeserializer<HashSet> {
-    def gsonService = ServletContextHolder.servletContext.getAttribute(GrailsApplicationAttributes.APPLICATION_CONTEXT).gsonService
+
+    ApplicationContext applicationContext
+
+    HashSetSerializer(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext
+    }
+
+    def gsonService = applicationContext.gsonService
 
     JsonElement serialize(HashSet hashSet, Type type, JsonSerializationContext context) {
         JsonObject result = new JsonObject()
