@@ -20,6 +20,7 @@ class GsonService {
         builder.registerTypeAdapter(Boolean.class, new BooleanSerializer())
         builder.registerTypeAdapter(ArrayList.class, new ArrayListSerializer())
         builder.registerTypeAdapter(LinkedHashMap.class, new LinkedHashMapSerializer())
+        builder.registerTypeAdapter(HashSet.class, new HashSetSerializer())
         gson = builder.create()
     }
 

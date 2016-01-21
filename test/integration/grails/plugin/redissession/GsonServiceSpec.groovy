@@ -32,13 +32,14 @@ class GsonServiceSpec extends IntegrationSpec {
         StringEscapeUtils.unescapeJava(result) == expected
 
         where:
-        value                           | expected
-        "Test string"                   | '''{"type":"java.lang.String","value":"Test string"}'''
-        2l                              | '''{"type":"java.lang.Long","value":2}'''
-        5                               | '''{"type":"java.lang.Integer","value":5}'''
-        false                           | '''{"type":"java.lang.Boolean","value":false}'''
-        [1,"b", 2l, false]              | '''{"type":"java.util.ArrayList","value":"["{\\"type\\":\\"java.lang.Integer\\",\\"value\\":1}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"b\\"}","{\\"type\\":\\"java.lang.Long\\",\\"value\\":2}","{\\"type\\":\\"java.lang.Boolean\\",\\"value\\":false}"]"}'''
-        [1:"test", "two": 2, 3l: false] | '''{"type":"java.util.LinkedHashMap","value":"{"{\\"type\\":\\"java.lang.Integer\\",\\"value\\":1}":"{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"test\\"}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"two\\"}":"{\\"type\\":\\"java.lang.Integer\\",\\"value\\":2}","{\\"type\\":\\"java.lang.Long\\",\\"value\\":3}":"{\\"type\\":\\"java.lang.Boolean\\",\\"value\\":false}"}"}'''
+        value                               | expected
+        "Test string"                       | '''{"type":"java.lang.String","value":"Test string"}'''
+        2l                                  | '''{"type":"java.lang.Long","value":2}'''
+        5                                   | '''{"type":"java.lang.Integer","value":5}'''
+        false                               | '''{"type":"java.lang.Boolean","value":false}'''
+        [1,"b", 2l, false]                  | '''{"type":"java.util.ArrayList","value":"["{\\"type\\":\\"java.lang.Integer\\",\\"value\\":1}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"b\\"}","{\\"type\\":\\"java.lang.Long\\",\\"value\\":2}","{\\"type\\":\\"java.lang.Boolean\\",\\"value\\":false}"]"}'''
+        [1:"test", "two": 2, 3l: false]     | '''{"type":"java.util.LinkedHashMap","value":"{"{\\"type\\":\\"java.lang.Integer\\",\\"value\\":1}":"{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"test\\"}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"two\\"}":"{\\"type\\":\\"java.lang.Integer\\",\\"value\\":2}","{\\"type\\":\\"java.lang.Long\\",\\"value\\":3}":"{\\"type\\":\\"java.lang.Boolean\\",\\"value\\":false}"}"}'''
+        new HashSet([1,"two", 2l, false])   | '''{"type":"java.util.HashSet","value":"["{\\"type\\":\\"java.lang.Boolean\\",\\"value\\":false}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"two\\"}","{\\"type\\":\\"java.lang.Integer\\",\\"value\\":1}","{\\"type\\":\\"java.lang.Long\\",\\"value\\":2}"]"}'''
     }
 
     @Unroll
@@ -60,6 +61,7 @@ class GsonServiceSpec extends IntegrationSpec {
         "java.lang.Boolean"         | false                                             | false
         "java.util.ArrayList"       | buildJsonArray([1, "b", 2l, false])               | [1, "b", 2l, false]
         "java.util.LinkedHashMap"   | buildJsonHashMap([1:"test", "two": 2, 3l: false]) | [1: "test", "two": 2, 3l:false]
+        "java.util.HashSet"         | buildJsonArray([1,"two", 2l, false])              | new HashSet([1,"two", 2l, false])
     }
 
     void "test register type adapter"() {
