@@ -1,3 +1,5 @@
+package grails.plugin.redissession.serializers
+
 import com.google.gson.JsonArray
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
