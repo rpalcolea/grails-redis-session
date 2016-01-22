@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import grails.plugin.redissession.serializers.*
+import org.codehaus.groovy.runtime.GStringImpl
 import org.springframework.context.ApplicationContext
 
 import java.lang.reflect.Type
@@ -16,6 +17,7 @@ class GsonService {
     def initialize(ApplicationContext ctx) {
         log.debug("Initializing gson service")
         builder.registerTypeAdapter(String.class, new StringSerializer())
+        builder.registerTypeAdapter(GStringImpl.class, new GStringImplSerializer())
         builder.registerTypeAdapter(Integer.class, new IntegerSerializer())
         builder.registerTypeAdapter(Long.class, new LongSerializer())
         builder.registerTypeAdapter(Boolean.class, new BooleanSerializer())

@@ -35,6 +35,7 @@ class GsonServiceSpec extends IntegrationSpec {
         where:
         value                               | expected
         "Test string"                       | '''{"type":"java.lang.String","value":"Test string"}'''
+        "Test ${"gString"}"                 | '''{"type":"java.lang.String","value":"Test gString"}'''
         2l                                  | '''{"type":"java.lang.Long","value":2}'''
         5                                   | '''{"type":"java.lang.Integer","value":5}'''
         false                               | '''{"type":"java.lang.Boolean","value":false}'''
