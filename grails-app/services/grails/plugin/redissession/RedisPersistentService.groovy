@@ -2,7 +2,6 @@ package grails.plugin.redissession
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import grails.plugin.redissession.serializers.*
 import grails.plugin.databasesession.InvalidatedSessionException
 import grails.plugin.databasesession.Persister
 import grails.plugin.databasesession.SessionProxyFilter
@@ -72,13 +71,8 @@ class RedisPersistentService implements Persister  {
                 //Updating the session last accessed time in the zset
                 redis.zadd(LAST_ACCESSED_TIME_ZSET, System.currentTimeMillis(), sessionId)
 
-                if (useJson()) {
-                    def serializedAttribute = redis.hget((serializeAsJson("${SESSION_ATTRIBUTES_PREFIX}${sessionId}")), serializeAsJson(key))
-                    attribute = deserializeJson(serializedAttribute)
-                } else {
-                    def serializedAttribute = redis.hget((serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}")), serialize(key))
-                    attribute = deserialize(serializedAttribute)
-                }
+                def serializedAttribute = redis.hget((serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}")), serialize(key))
+                attribute = deserialize(serializedAttribute)
 
             }
 
@@ -120,12 +114,7 @@ class RedisPersistentService implements Persister  {
 
                 //Updating the session last accessed time in the zset
                 redis.zadd(LAST_ACCESSED_TIME_ZSET, System.currentTimeMillis(), sessionId)
-
-                if (useJson()) {
-                    redis.hset(serializeAsJson("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"), serializeAsJson(key), serializeAsJson(value))
-                } else {
-                    redis.hset(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"), serialize(key), serialize(value))
-                }
+                redis.hset(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"), serialize(key), serialize(value))
 
             }
         }
@@ -256,9 +245,13 @@ class RedisPersistentService implements Persister  {
         log.error e.message, e
     }
 
-    public deserialize(byte[] serialized) {
+    public deserialize(def serialized) {
         if (!serialized) {
             return null
+        }
+
+        if (useJson()) {
+            return deserializeJson(serialized)
         }
 
         new ObjectInputStream(new ByteArrayInputStream(serialized)) {
@@ -288,9 +281,13 @@ class RedisPersistentService implements Persister  {
         return deserializedObject
     }
 
-    public byte[] serialize(def value) {
+    public serialize(def value) {
         if (value == null) {
             return null
+        }
+
+        if (useJson()) {
+            return serializeAsJson(value)
         }
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream()
