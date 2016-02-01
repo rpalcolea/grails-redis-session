@@ -274,6 +274,7 @@ class RedisPersistentService implements Persister  {
             JsonObject jsonObject = parser.parse(serialized).getAsJsonObject()
             deserializedObject = gsonService.deserializeJson(jsonObject)
         } catch (Exception e) {
+            log.error("Unable to deserialize object as JSON.")
             handleException(e)
             return deserialize(serialized)
         }
