@@ -35,7 +35,7 @@ Stores HTTP sessions in a Redis data store.
     }
 
     private boolean useJson(config) {
-        def enabled = config.grails.plugin.redisdatabasesession.usejson
+        def enabled = config.grails.plugin.redisdatabasesession.useJson
         enabled instanceof Boolean ?: false
     }
 

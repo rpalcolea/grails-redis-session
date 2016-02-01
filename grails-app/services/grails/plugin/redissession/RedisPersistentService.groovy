@@ -274,7 +274,7 @@ class RedisPersistentService implements Persister  {
             JsonObject jsonObject = parser.parse(serialized).getAsJsonObject()
             deserializedObject = gsonService.deserializeJson(jsonObject)
         } catch (Exception e) {
-            log.error("Unable to deserialize object as JSON.", e)
+            handleException(e)
             return deserialize(serialized)
         }
 
@@ -306,7 +306,8 @@ class RedisPersistentService implements Persister  {
         try {
             serializedJson = gsonService.serializeAsJson(value)
         } catch (Exception e) {
-            log.error("Unable to serialize value as JSON.", e)
+            log.error("Unable to serialize value as JSON.")
+            handleException(e)
             return serialize(value)
         }
 
@@ -314,7 +315,7 @@ class RedisPersistentService implements Persister  {
     }
 
     private boolean useJson() {
-        def useJson = grailsApplication.config.grails.plugin.redisdatabasesession.usejson
+        def useJson = grailsApplication.config.grails.plugin.redisdatabasesession.useJson
         return useJson instanceof Boolean ?: false
     }
 }

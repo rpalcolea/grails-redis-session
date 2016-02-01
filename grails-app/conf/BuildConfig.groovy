@@ -1,10 +1,8 @@
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
-grails.project.repos.ow.url = "http://artifactory.owteam.com/artifactory/ow-v2"
-grails.project.repos.ow.username = "jenkins-dev"
-grails.project.repos.ow.password = "{DESede}+oLx3dET0kdyvlXMeGJjpQ=="
 grails.project.target.level = 1.6
+grails.project.dependency.resolver = "maven"
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
@@ -12,9 +10,8 @@ grails.project.dependency.resolution = {
     log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     repositories {
         grailsCentral()
-        mavenRepo "https://repo.grails.org/grails/plugins"
+        grailsPlugins()
         mavenCentral()
-        mavenRepo "http://artifactory.owteam.com/artifactory/simple/ow-v2"
     }
     dependencies {
     }
