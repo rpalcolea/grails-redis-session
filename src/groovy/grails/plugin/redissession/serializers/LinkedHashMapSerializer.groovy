@@ -7,6 +7,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.google.gson.JsonSerializationContext
 import com.google.gson.JsonSerializer
+import groovy.json.StringEscapeUtils
 import org.springframework.context.ApplicationContext
 
 import java.lang.reflect.Type
@@ -48,7 +49,7 @@ class LinkedHashMapSerializer implements JsonSerializer<LinkedHashMap>, JsonDese
         jsonObject.entrySet().each {
             String keyString = it.key
             //deal with troublesome string formatting when converting from JsonPrimitive
-            String valueString = it.value.toString()[1..-2].replace("\\", "")
+            String valueString = StringEscapeUtils.unescapeJava(it.value.toString())[1..-2]
 
             JsonObject keyObject = jsonParser.parse(keyString).getAsJsonObject()
             JsonObject valObject = jsonParser.parse(valueString).getAsJsonObject()

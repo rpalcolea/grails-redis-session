@@ -28,11 +28,25 @@ class GsonService {
     }
 
     String serializeAsJson(value) {
+        //special case for nulls
+        if (value == null) {
+            JsonObject result = new JsonObject()
+            result.addProperty("type", "nullField")
+            return result
+        }
+
         return gson.toJson(value)
     }
 
     def deserializeJson(JsonObject json) {
-        Class objectClass = Class.forName(json.get("type").getAsString())
+        String classType = json.get("type").getAsString()
+
+        //handle null case
+        if (classType == "nullField") {
+            return null
+        }
+
+        Class objectClass = Class.forName(classType, true, Thread.currentThread().contextClassLoader)
         return gson.fromJson(json, objectClass)
     }
 

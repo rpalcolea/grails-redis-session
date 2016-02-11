@@ -245,12 +245,12 @@ class RedisPersistentService implements Persister  {
         log.error e.message, e
     }
 
-    public deserialize(def serialized) {
+    public deserialize(def serialized, Boolean forceNoJson = false) {
         if (!serialized) {
             return null
         }
 
-        if (useJson()) {
+        if (useJson() && !forceNoJson) {
             return deserializeJson(serialized)
         }
 
@@ -276,18 +276,18 @@ class RedisPersistentService implements Persister  {
         } catch (Exception e) {
             log.error("Unable to deserialize object as JSON.")
             handleException(e)
-            return deserialize(serialized)
+            return deserialize(serialized, true)
         }
 
         return deserializedObject
     }
 
-    public serialize(def value) {
+    public serialize(def value, Boolean forceNoJson = false) {
         if (value == null) {
             return null
         }
 
-        if (useJson()) {
+        if (useJson() && !forceNoJson) {
             return serializeAsJson(value)
         }
 
@@ -309,7 +309,7 @@ class RedisPersistentService implements Persister  {
         } catch (Exception e) {
             log.error("Unable to serialize value as JSON.")
             handleException(e)
-            return serialize(value)
+            return serialize(value, true)
         }
 
         return serializedJson
