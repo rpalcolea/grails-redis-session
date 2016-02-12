@@ -3,7 +3,10 @@ package grails.plugin.redissession
 import com.google.gson.GsonBuilder
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import grails.plugin.redissession.serializers.*
+import org.codehaus.groovy.grails.web.servlet.GrailsFlashScope
+import org.codehaus.groovy.grails.web.servlet.mvc.SynchronizerTokensHolder
 import org.codehaus.groovy.runtime.GStringImpl
 import org.springframework.context.ApplicationContext
 
@@ -13,6 +16,7 @@ class GsonService {
 
     Gson gson
     GsonBuilder builder = new GsonBuilder()
+    JsonParser jsonParser = new JsonParser()
 
     def initialize(ApplicationContext ctx) {
         log.debug("Initializing gson service")
@@ -24,6 +28,8 @@ class GsonService {
         builder.registerTypeAdapter(ArrayList.class, new ArrayListSerializer(ctx))
         builder.registerTypeAdapter(LinkedHashMap.class, new LinkedHashMapSerializer(ctx))
         builder.registerTypeAdapter(HashSet.class, new HashSetSerializer(ctx))
+        builder.registerTypeAdapter(GrailsFlashScope.class, new GrailsFlashScopeSerializer(ctx))
+        builder.registerTypeAdapter(SynchronizerTokensHolder.class, new SynchronizerTokensHolderSerializer(ctx))
         gson = builder.create()
     }
 

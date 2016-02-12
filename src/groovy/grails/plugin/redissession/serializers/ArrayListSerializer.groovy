@@ -43,7 +43,7 @@ class ArrayListSerializer implements JsonSerializer<ArrayList>, JsonDeserializer
     ArrayList deserialize(JsonElement json, Type type, JsonDeserializationContext context) {
         JsonObject serializedObject = json.getAsJsonObject()
         String jsonArrayString = serializedObject.get("value").value
-        JsonParser jsonParser = new JsonParser()
+        JsonParser jsonParser = gsonService.getJsonParser()
         JsonArray jsonArray = jsonParser.parse(jsonArrayString)
 
         ArrayList returnList = []

@@ -9,6 +9,9 @@ import com.google.gson.JsonSerializer
 import grails.test.spock.IntegrationSpec
 import grails.util.Holders
 import groovy.json.StringEscapeUtils
+import org.codehaus.groovy.grails.web.servlet.GrailsFlashScope
+import org.codehaus.groovy.grails.web.servlet.mvc.SynchronizerTokensHolder
+
 import java.lang.reflect.Type
 import spock.lang.Unroll
 
@@ -43,6 +46,8 @@ class GsonServiceSpec extends IntegrationSpec {
         [1,"b", 2l, false, null]                                    | '''{"type":"java.util.ArrayList","value":"["{\\"type\\":\\"java.lang.Integer\\",\\"value\\":1}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"b\\"}","{\\"type\\":\\"java.lang.Long\\",\\"value\\":2}","{\\"type\\":\\"java.lang.Boolean\\",\\"value\\":false}","{\\"type\\":\\"nullField\\"}"]"}'''
         [1:"test", "two": 2, 3l: false, "arrayVal": ["one",2]]      | '''{"type":"java.util.LinkedHashMap","value":"{"{\\"type\\":\\"java.lang.Integer\\",\\"value\\":1}":"{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"test\\"}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"two\\"}":"{\\"type\\":\\"java.lang.Integer\\",\\"value\\":2}","{\\"type\\":\\"java.lang.Long\\",\\"value\\":3}":"{\\"type\\":\\"java.lang.Boolean\\",\\"value\\":false}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"arrayVal\\"}":"{\\"type\\":\\"java.util.ArrayList\\",\\"value\\":\\"[\\\\\\"{\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"java.lang.String\\\\\\\\\\\\\\",\\\\\\\\\\\\\\"value\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"one\\\\\\\\\\\\\\"}\\\\\\",\\\\\\"{\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"java.lang.Integer\\\\\\\\\\\\\\",\\\\\\\\\\\\\\"value\\\\\\\\\\\\\\":2}\\\\\\"]\\"}"}"}'''
         new HashSet([1,"two", 2l, false])                           | '''{"type":"java.util.HashSet","value":"["{\\"type\\":\\"java.lang.Boolean\\",\\"value\\":false}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"two\\"}","{\\"type\\":\\"java.lang.Integer\\",\\"value\\":1}","{\\"type\\":\\"java.lang.Long\\",\\"value\\":2}"]"}'''
+        new SynchronizerTokensHolder()                              | '''{"type":"org.codehaus.groovy.grails.web.servlet.mvc.SynchronizerTokensHolder","value":"{"currentTokens":{}}"}'''
+        new GrailsFlashScope()                                      | '''{"type":"org.codehaus.groovy.grails.web.servlet.GrailsFlashScope","value":"{"type":"java.util.LinkedHashMap","value":"{}"}"}'''
     }
 
     @Unroll

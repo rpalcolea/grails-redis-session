@@ -43,7 +43,7 @@ class HashSetSerializer implements JsonSerializer<HashSet>, JsonDeserializer<Has
     HashSet deserialize(JsonElement json, Type type, JsonDeserializationContext context) {
         JsonObject serializedObject = json.getAsJsonObject()
         String jsonArrayString = serializedObject.get("value").value
-        JsonParser parser = new JsonParser()
+        JsonParser parser = gsonService.getJsonParser()
         JsonArray jsonArray = parser.parse(jsonArrayString)
 
         HashSet returnHashSet = new HashSet()
