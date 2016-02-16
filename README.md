@@ -37,8 +37,9 @@ To enable JSON serialization set the `useJson` flag to `true` in you application
 **Warning:** While serialization for some commonly needed classes has been taken care of, it is possible that you may need to implement your own type adapters depending on what you are storing in your session.
 
 Custom type adapters will need to produce JSON that has both a `type` field and a `value` field. Additionally, the type adapter is a `gson` type adapter and must implement `com.google.gson.JsonSerializer` and/or `com.google.gson.JsonDeserializer`
-- `type` should be the canonical name of the class for which you are registering a type adapter.
-- `value` should be the data stored for the object.
+
+* `type` should be the canonical name of the class for which you are registering a type adapter.
+* `value` should be the data stored for the object.
 
 An example of a type adapter for a Double is as follows:
 
