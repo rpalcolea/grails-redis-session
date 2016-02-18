@@ -50,7 +50,7 @@ class RedisPersistentService implements Persister  {
     Object getAttribute(String sessionId, String key) throws InvalidatedSessionException {
         if (key == null) return null
 
-        if (GrailsApplicationAttributes.FLASH_SCOPE == key) {
+        if (GrailsApplicationAttributes.FLASH_SCOPE == key && !useJson()) {
             // special case; use request scope since a new deserialized instance is created each time it's retrieved from the session
             def fs = SessionProxyFilter.request.getAttribute(GrailsApplicationAttributes.FLASH_SCOPE)
             if (fs != null) {
@@ -76,7 +76,7 @@ class RedisPersistentService implements Persister  {
 
             }
 
-            if (attribute != null && GrailsApplicationAttributes.FLASH_SCOPE == key) {
+            if (attribute != null && GrailsApplicationAttributes.FLASH_SCOPE == key && !useJson()) {
                 SessionProxyFilter.request.setAttribute(GrailsApplicationAttributes.FLASH_SCOPE, attribute)
             }
 
@@ -94,7 +94,7 @@ class RedisPersistentService implements Persister  {
         }
 
         // special case; use request scope and don't store in session, the filter will set it in the session at the end of the request
-        if (value != null && GrailsApplicationAttributes.FLASH_SCOPE == key) {
+        if (value != null && GrailsApplicationAttributes.FLASH_SCOPE == key && !useJson()) {
             if (value != GrailsApplicationAttributes.FLASH_SCOPE) {
                 SessionProxyFilter.request.setAttribute(GrailsApplicationAttributes.FLASH_SCOPE, value)
                 return
@@ -317,6 +317,6 @@ class RedisPersistentService implements Persister  {
 
     private boolean useJson() {
         def useJson = grailsApplication.config.grails.plugin.redisdatabasesession.useJson
-        return useJson instanceof Boolean ?: false
+        return useJson instanceof Boolean ? useJson : false
     }
 }

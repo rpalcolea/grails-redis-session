@@ -3,6 +3,7 @@ package grails.plugin.redissession
 import com.google.gson.JsonArray
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import com.google.gson.JsonPrimitive
 import com.google.gson.JsonSerializationContext
 import com.google.gson.JsonSerializer
@@ -47,7 +48,6 @@ class GsonServiceSpec extends IntegrationSpec {
         [1:"test", "two": 2, 3l: false, "arrayVal": ["one",2]]      | '''{"type":"java.util.LinkedHashMap","value":"{"{\\"type\\":\\"java.lang.Integer\\",\\"value\\":1}":"{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"test\\"}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"two\\"}":"{\\"type\\":\\"java.lang.Integer\\",\\"value\\":2}","{\\"type\\":\\"java.lang.Long\\",\\"value\\":3}":"{\\"type\\":\\"java.lang.Boolean\\",\\"value\\":false}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"arrayVal\\"}":"{\\"type\\":\\"java.util.ArrayList\\",\\"value\\":\\"[\\\\\\"{\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"java.lang.String\\\\\\\\\\\\\\",\\\\\\\\\\\\\\"value\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"one\\\\\\\\\\\\\\"}\\\\\\",\\\\\\"{\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"java.lang.Integer\\\\\\\\\\\\\\",\\\\\\\\\\\\\\"value\\\\\\\\\\\\\\":2}\\\\\\"]\\"}"}"}'''
         new HashSet([1,"two", 2l, false])                           | '''{"type":"java.util.HashSet","value":"["{\\"type\\":\\"java.lang.Boolean\\",\\"value\\":false}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"two\\"}","{\\"type\\":\\"java.lang.Integer\\",\\"value\\":1}","{\\"type\\":\\"java.lang.Long\\",\\"value\\":2}"]"}'''
         new SynchronizerTokensHolder()                              | '''{"type":"org.codehaus.groovy.grails.web.servlet.mvc.SynchronizerTokensHolder","value":"{"currentTokens":{}}"}'''
-        new GrailsFlashScope()                                      | '''{"type":"org.codehaus.groovy.grails.web.servlet.GrailsFlashScope","value":"{"type":"java.util.LinkedHashMap","value":"{}"}"}'''
     }
 
     @Unroll
@@ -84,6 +84,30 @@ class GsonServiceSpec extends IntegrationSpec {
         serializedDouble == '''{"value":"Double test serialization"}'''
         serializedString == '''{"type":"java.lang.String","value":"Test string"}'''
 
+
+    }
+
+    void "test serialize flash scope"() {
+
+        when:
+        def flashScope = new GrailsFlashScope()
+        flashScope.put("numberMessagesShown", [10])
+        def result = gsonService.serializeAsJson(flashScope)
+
+        then:
+        //nested json object strings == string escape hell
+        result == '''{"type":"org.codehaus.groovy.grails.web.servlet.GrailsFlashScope","value":"{\\"type\\":\\"java.util.LinkedHashMap\\",\\"value\\":\\"{\\\\\\"{\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"java.lang.String\\\\\\\\\\\\\\",\\\\\\\\\\\\\\"value\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"numberMessagesShown\\\\\\\\\\\\\\"}\\\\\\":\\\\\\"{\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"java.util.ArrayList\\\\\\\\\\\\\\",\\\\\\\\\\\\\\"value\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"[\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"{\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"java.lang.Integer\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"value\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\":10}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"]\\\\\\\\\\\\\\"}\\\\\\"}\\"}"}'''
+    }
+
+    void "test deserialize flash scope"() {
+        when:
+        JsonParser jsonParser = gsonService.getJsonParser()
+        def flashScopeJson = jsonParser.parse('''{"type":"org.codehaus.groovy.grails.web.servlet.GrailsFlashScope","value":"{\\"type\\":\\"java.util.LinkedHashMap\\",\\"value\\":\\"{\\\\\\"{\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"java.lang.String\\\\\\\\\\\\\\",\\\\\\\\\\\\\\"value\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"numberMessagesShown\\\\\\\\\\\\\\"}\\\\\\":\\\\\\"{\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"java.util.ArrayList\\\\\\\\\\\\\\",\\\\\\\\\\\\\\"value\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"[\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"{\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"java.lang.Integer\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"value\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\":10}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"]\\\\\\\\\\\\\\"}\\\\\\"}\\"}"}''').getAsJsonObject()
+        def deserialized = gsonService.deserializeJson(flashScopeJson)
+
+        then:
+        deserialized.getClass() == GrailsFlashScope.class
+        deserialized.get("numberMessagesShown") == [10]
 
     }
 
