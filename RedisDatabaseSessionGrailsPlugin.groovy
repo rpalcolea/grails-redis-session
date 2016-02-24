@@ -1,6 +1,9 @@
 import grails.plugin.redissession.RedisPersistentService
 import grails.plugin.redissession.RedisSessionCleanupService
 import grails.plugin.databasesession.SessionProxyFilter
+import org.codehaus.groovy.grails.web.servlet.mvc.SynchronizerTokensHolder
+
+import javax.servlet.http.HttpSession
 
 class RedisDatabaseSessionGrailsPlugin {
     def version = "1.2"
@@ -31,6 +34,29 @@ Stores HTTP sessions in a Redis data store.
     def doWithApplicationContext = { applicationContext ->
         if (useJson(application.config)) {
             applicationContext.gsonService.initialize(applicationContext)
+        }
+
+        //SynchronizerTokensHolder doesn't explicitly save the holder to the session when generating a token.
+        //This causes the synchronizer token to not be set in form tag lib, meaning withForm closures didn't work.
+        SynchronizerTokensHolder.metaClass.'static'.store = { HttpSession httpSession ->
+            SynchronizerTokensHolder tokensHolder = httpSession.getAttribute(SynchronizerTokensHolder.HOLDER)
+            if (!tokensHolder) {
+                tokensHolder = new SynchronizerTokensHolder()
+                httpSession.setAttribute(SynchronizerTokensHolder.HOLDER, tokensHolder)
+            }
+
+            tokensHolder.metaClass.session = httpSession
+
+            return tokensHolder
+        }
+
+        SynchronizerTokensHolder.metaClass.generateToken = { String url ->
+            final UUID uuid = UUID.randomUUID()
+
+            getTokens(url).add(uuid)
+
+            session.setAttribute(SynchronizerTokensHolder.HOLDER, delegate)
+            return uuid
         }
     }
 
