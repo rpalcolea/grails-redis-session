@@ -1,5 +1,7 @@
 package grails.plugin.redissession
 
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import grails.plugin.databasesession.InvalidatedSessionException
 import grails.plugin.databasesession.Persister
 import grails.plugin.databasesession.SessionProxyFilter
@@ -15,6 +17,7 @@ class RedisPersistentService implements Persister  {
     static transactional = false
     def redisService
     def grailsApplication
+    def gsonService
 
     private static final String MAX_INACTIVE_INTERVAL = "maxInactiveInterval"
     private static final String INVALIDATED = "invalidated"
@@ -47,7 +50,7 @@ class RedisPersistentService implements Persister  {
     Object getAttribute(String sessionId, String key) throws InvalidatedSessionException {
         if (key == null) return null
 
-        if (GrailsApplicationAttributes.FLASH_SCOPE == key) {
+        if (GrailsApplicationAttributes.FLASH_SCOPE == key && !useJson()) {
             // special case; use request scope since a new deserialized instance is created each time it's retrieved from the session
             def fs = SessionProxyFilter.request.getAttribute(GrailsApplicationAttributes.FLASH_SCOPE)
             if (fs != null) {
@@ -69,12 +72,11 @@ class RedisPersistentService implements Persister  {
                 redis.zadd(LAST_ACCESSED_TIME_ZSET, System.currentTimeMillis(), sessionId)
 
                 def serializedAttribute = redis.hget((serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}")), serialize(key))
-
                 attribute = deserialize(serializedAttribute)
 
             }
 
-            if (attribute != null && GrailsApplicationAttributes.FLASH_SCOPE == key) {
+            if (attribute != null && GrailsApplicationAttributes.FLASH_SCOPE == key && !useJson()) {
                 SessionProxyFilter.request.setAttribute(GrailsApplicationAttributes.FLASH_SCOPE, attribute)
             }
 
@@ -92,7 +94,7 @@ class RedisPersistentService implements Persister  {
         }
 
         // special case; use request scope and don't store in session, the filter will set it in the session at the end of the request
-        if (value != null && GrailsApplicationAttributes.FLASH_SCOPE == key) {
+        if (value != null && GrailsApplicationAttributes.FLASH_SCOPE == key && !useJson()) {
             if (value != GrailsApplicationAttributes.FLASH_SCOPE) {
                 SessionProxyFilter.request.setAttribute(GrailsApplicationAttributes.FLASH_SCOPE, value)
                 return
@@ -112,7 +114,6 @@ class RedisPersistentService implements Persister  {
 
                 //Updating the session last accessed time in the zset
                 redis.zadd(LAST_ACCESSED_TIME_ZSET, System.currentTimeMillis(), sessionId)
-
                 redis.hset(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"), serialize(key), serialize(value))
 
             }
@@ -244,9 +245,13 @@ class RedisPersistentService implements Persister  {
         log.error e.message, e
     }
 
-    public deserialize(byte[] serialized) {
+    public deserialize(def serialized, Boolean forceNoJson = false) {
         if (!serialized) {
             return null
+        }
+
+        if (useJson() && !forceNoJson) {
+            return deserializeJson(serialized)
         }
 
         new ObjectInputStream(new ByteArrayInputStream(serialized)) {
@@ -257,14 +262,61 @@ class RedisPersistentService implements Persister  {
         }.readObject()
     }
 
-    public byte[] serialize(value) {
+    public deserializeJson(def serialized) {
+        if (!serialized) {
+            return null
+        }
+
+        def deserializedObject
+
+        try {
+            JsonParser parser = new JsonParser()
+            JsonObject jsonObject = parser.parse(serialized).getAsJsonObject()
+            deserializedObject = gsonService.deserializeJson(jsonObject)
+        } catch (Exception e) {
+            log.error("Unable to deserialize object as JSON.")
+            handleException(e)
+            return deserialize(serialized, true)
+        }
+
+        return deserializedObject
+    }
+
+    public serialize(def value, Boolean forceNoJson = false) {
         if (value == null) {
             return null
+        }
+
+        if (useJson() && !forceNoJson) {
+            return serializeAsJson(value)
         }
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream()
 
         new ObjectOutputStream(baos).writeObject value
         baos.toByteArray()
+    }
+
+    public serializeAsJson(def value) {
+        if (value == null) {
+            return null
+        }
+
+        String serializedJson
+
+        try {
+            serializedJson = gsonService.serializeAsJson(value)
+        } catch (Exception e) {
+            log.error("Unable to serialize value as JSON.")
+            handleException(e)
+            return serialize(value, true)
+        }
+
+        return serializedJson
+    }
+
+    private boolean useJson() {
+        def useJson = grailsApplication.config.grails.plugin.redisdatabasesession.useJson
+        return useJson instanceof Boolean ? useJson : false
     }
 }
