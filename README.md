@@ -72,6 +72,8 @@ redisDatabaseSessionGsonService.registerTypeAdapter(Double.class, new DoubleSeri
 
 ## Authors
 [Roberto Perez Alcolea](http://www.perezalcolea.info)
+
 [Brit Indrelie](http://www.objectpartners.com)
+
 Raj Govindarajan
 
