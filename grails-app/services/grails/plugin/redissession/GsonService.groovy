@@ -21,6 +21,7 @@ class GsonService {
     def initialize(ApplicationContext ctx) {
         log.debug("Initializing gson service")
         builder.registerTypeAdapter(String.class, new StringSerializer())
+        builder.registerTypeAdapter(UUID.class, new UuidSerializer())
         builder.registerTypeAdapter(GStringImpl.class, new GStringImplSerializer())
         builder.registerTypeAdapter(Integer.class, new IntegerSerializer())
         builder.registerTypeAdapter(Long.class, new LongSerializer())

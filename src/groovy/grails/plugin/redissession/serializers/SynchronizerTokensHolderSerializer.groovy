@@ -31,6 +31,10 @@ class SynchronizerTokensHolderSerializer implements JsonSerializer<SynchronizerT
         JsonObject result = new JsonObject()
         result.addProperty("type", "org.codehaus.groovy.grails.web.servlet.mvc.SynchronizerTokensHolder")
 
+        if (synchronizerTokensHolder.sessionId) {
+            result.addProperty("sessionId", synchronizerTokensHolder.sessionId)
+        }
+
         result.addProperty("value", objectString)
 
         return result
@@ -39,8 +43,15 @@ class SynchronizerTokensHolderSerializer implements JsonSerializer<SynchronizerT
     SynchronizerTokensHolder deserialize(JsonElement json, Type type, JsonDeserializationContext context) {
         JsonParser jsonParser = gsonService.jsonParser
 
-        JsonObject valueObject = jsonParser.parse(json.getAsJsonObject().get("value").value).getAsJsonObject()
+        JsonObject jsonObject = json.getAsJsonObject()
+        JsonObject valueObject = jsonParser.parse(jsonObject.get("value").value).getAsJsonObject()
+        String sessionId = jsonObject.get("sessionId").getAsString()
 
-        return gson.fromJson(valueObject, SynchronizerTokensHolder.class)
+        SynchronizerTokensHolder returnHolder = gson.fromJson(valueObject, SynchronizerTokensHolder.class)
+        if (sessionId) {
+            returnHolder.metaClass.sessionId = sessionId
+        }
+
+        return returnHolder
     }
 }

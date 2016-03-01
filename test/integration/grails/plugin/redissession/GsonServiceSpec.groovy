@@ -39,6 +39,7 @@ class GsonServiceSpec extends IntegrationSpec {
         where:
         value                                                       | expected
         "Test string"                                               | '''{"type":"java.lang.String","value":"Test string"}'''
+        UUID.fromString("2008424f-8d17-41f2-bcbc-3395f29c6170")     | '''{"type":"java.util.UUID","value":"2008424f-8d17-41f2-bcbc-3395f29c6170"}'''
         "Test ${"gString"}"                                         | '''{"type":"java.lang.String","value":"Test gString"}'''
         2l                                                          | '''{"type":"java.lang.Long","value":2}'''
         5                                                           | '''{"type":"java.lang.Integer","value":5}'''
@@ -64,6 +65,7 @@ class GsonServiceSpec extends IntegrationSpec {
         where:
         type                        | value                                                                     | expected
         "java.lang.String"          | "Test String"                                                             | "Test String"
+        "java.util.UUID"            | "2008424f-8d17-41f2-bcbc-3395f29c6170"                                    | UUID.fromString("2008424f-8d17-41f2-bcbc-3395f29c6170")
         "java.lang.Long"            | 2l                                                                        | 2l
         "java.lang.Integer"         | 5                                                                         | 5
         "java.lang.Boolean"         | false                                                                     | false
