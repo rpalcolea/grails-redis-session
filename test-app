@@ -1,0 +1,879 @@
+<dependencies>
+  <build>
+    <dependency group='xalan' name='serializer' version='2.7.1'>
+      <jar>/Users/rperez/.m2/repository/xalan/serializer/2.7.1/serializer-2.7.1.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-bootstrap' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-bootstrap/2.3.9/grails-bootstrap-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='jcl-over-slf4j' version='1.7.5'>
+      <jar>/Users/rperez/.m2/repository/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='slf4j-api' version='1.7.5'>
+      <jar>/Users/rperez/.m2/repository/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.apache.ant' name='ant' version='1.8.4'>
+      <jar>/Users/rperez/.m2/repository/org/apache/ant/ant/1.8.4/ant-1.8.4.jar</jar>
+    </dependency>
+    <dependency group='jline' name='jline' version='2.11'>
+      <jar>/Users/rperez/.m2/repository/jline/jline/2.11/jline-2.11.jar</jar>
+    </dependency>
+    <dependency group='org.apache.ant' name='ant-launcher' version='1.8.4'>
+      <jar>/Users/rperez/.m2/repository/org/apache/ant/ant-launcher/1.8.4/ant-launcher-1.8.4.jar</jar>
+    </dependency>
+    <dependency group='org.apache.ant' name='ant-trax' version='1.7.1'>
+      <jar>/Users/rperez/.m2/repository/org/apache/ant/ant-trax/1.7.1/ant-trax-1.7.1.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.groovy' name='groovy-all' version='2.1.9'>
+      <jar>/Users/rperez/.m2/repository/org/codehaus/groovy/groovy-all/2.1.9/groovy-all-2.1.9.jar</jar>
+    </dependency>
+    <dependency group='org.apache.ant' name='ant-junit' version='1.8.4'>
+      <jar>/Users/rperez/.m2/repository/org/apache/ant/ant-junit/1.8.4/ant-junit-1.8.4.jar</jar>
+    </dependency>
+    <dependency group='net.java.dev.jna' name='jna' version='4.0.0'>
+      <jar>/Users/rperez/.m2/repository/net/java/dev/jna/jna/4.0.0/jna-4.0.0.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.gant' name='gant_groovy1.8' version='1.9.6'>
+      <jar>/Users/rperez/.m2/repository/org/codehaus/gant/gant_groovy1.8/1.9.6/gant_groovy1.8-1.9.6.jar</jar>
+    </dependency>
+    <dependency group='org.apache.ivy' name='ivy' version='2.3.0'>
+      <jar>/Users/rperez/.m2/repository/org/apache/ivy/ivy/2.3.0/ivy-2.3.0.jar</jar>
+    </dependency>
+    <dependency group='org.fusesource.jansi' name='jansi' version='1.11'>
+      <jar>/Users/rperez/.m2/repository/org/fusesource/jansi/jansi/1.11/jansi-1.11.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-scripts' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-scripts/2.3.9/grails-scripts-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.spockframework' name='spock-core' version='0.7-groovy-2.0'>
+      <jar>/Users/rperez/.m2/repository/org/spockframework/spock-core/0.7-groovy-2.0/spock-core-0.7-groovy-2.0.jar</jar>
+    </dependency>
+    <dependency group='org.hamcrest' name='hamcrest-core' version='1.3'>
+      <jar>/Users/rperez/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar</jar>
+    </dependency>
+    <dependency group='junit' name='junit' version='4.11'>
+      <jar>/Users/rperez/.m2/repository/junit/junit/4.11/junit-4.11.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-docs' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-docs/2.3.9/grails-docs-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.xhtmlrenderer' name='core-renderer' version='R8'>
+      <jar>/Users/rperez/.m2/repository/org/xhtmlrenderer/core-renderer/R8/core-renderer-R8.jar</jar>
+    </dependency>
+    <dependency group='org.yaml' name='snakeyaml' version='1.8'>
+      <jar>/Users/rperez/.m2/repository/org/yaml/snakeyaml/1.8/snakeyaml-1.8.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-gdoc-engine' version='1.0.1'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-gdoc-engine/1.0.1/grails-gdoc-engine-1.0.1.jar</jar>
+    </dependency>
+    <dependency group='com.lowagie' name='itext' version='2.0.8'>
+      <jar>/Users/rperez/.m2/repository/com/lowagie/itext/2.0.8/itext-2.0.8.jar</jar>
+    </dependency>
+    <dependency group='bouncycastle' name='bcmail-jdk14' version='138'>
+      <jar>/Users/rperez/.m2/repository/bouncycastle/bcmail-jdk14/138/bcmail-jdk14-138.jar</jar>
+    </dependency>
+    <dependency group='bouncycastle' name='bcprov-jdk14' version='138'>
+      <jar>/Users/rperez/.m2/repository/bouncycastle/bcprov-jdk14/138/bcprov-jdk14-138.jar</jar>
+    </dependency>
+    <dependency group='commons-lang' name='commons-lang' version='2.6'>
+      <jar>/Users/rperez/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='tomcat' version='7.0.52.1'>
+      <jar>/Users/rperez/.m2/repository/org/grails/plugins/tomcat/7.0.52.1/tomcat-7.0.52.1.zip</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat' name='tomcat-catalina-ant' version='7.0.52'>
+      <jar>/Users/rperez/.m2/repository/org/apache/tomcat/tomcat-catalina-ant/7.0.52/tomcat-catalina-ant-7.0.52.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat.embed' name='tomcat-embed-jasper' version='7.0.52'>
+      <jar>/Users/rperez/.m2/repository/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.52/tomcat-embed-jasper-7.0.52.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat.embed' name='tomcat-embed-el' version='7.0.52'>
+      <jar>/Users/rperez/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/7.0.52/tomcat-embed-el-7.0.52.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat.embed' name='tomcat-embed-logging-log4j' version='7.0.52'>
+      <jar>/Users/rperez/.m2/repository/org/apache/tomcat/embed/tomcat-embed-logging-log4j/7.0.52/tomcat-embed-logging-log4j-7.0.52.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat.embed' name='tomcat-embed-websocket' version='7.0.52'>
+      <jar>/Users/rperez/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/7.0.52/tomcat-embed-websocket-7.0.52.jar</jar>
+    </dependency>
+    <dependency group='org.eclipse.jdt.core.compiler' name='ecj' version='3.7.2'>
+      <jar>/Users/rperez/.m2/repository/org/eclipse/jdt/core/compiler/ecj/3.7.2/ecj-3.7.2.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat.embed' name='tomcat-embed-core' version='7.0.52'>
+      <jar>/Users/rperez/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/7.0.52/tomcat-embed-core-7.0.52.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='release' version='3.0.1'>
+      <jar>/Users/rperez/.m2/repository/org/grails/plugins/release/3.0.1/release-3.0.1.zip</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-ant-tasks' version='2.1.3'>
+      <jar>/Users/rperez/.m2/repository/org/apache/maven/maven-ant-tasks/2.1.3/maven-ant-tasks-2.1.3.jar</jar>
+    </dependency>
+    <dependency group='classworlds' name='classworlds' version='1.1-alpha-2'>
+      <jar>/Users/rperez/.m2/repository/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.plexus' name='plexus-container-default' version='1.0-alpha-9-stable-1'>
+      <jar>/Users/rperez/.m2/repository/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.plexus' name='plexus-utils' version='1.5.15'>
+      <jar>/Users/rperez/.m2/repository/org/codehaus/plexus/plexus-utils/1.5.15/plexus-utils-1.5.15.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.plexus' name='plexus-interpolation' version='1.11'>
+      <jar>/Users/rperez/.m2/repository/org/codehaus/plexus/plexus-interpolation/1.11/plexus-interpolation-1.11.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-artifact' version='2.2.1'>
+      <jar>/Users/rperez/.m2/repository/org/apache/maven/maven-artifact/2.2.1/maven-artifact-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-artifact-manager' version='2.2.1'>
+      <jar>/Users/rperez/.m2/repository/org/apache/maven/maven-artifact-manager/2.2.1/maven-artifact-manager-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-repository-metadata' version='2.2.1'>
+      <jar>/Users/rperez/.m2/repository/org/apache/maven/maven-repository-metadata/2.2.1/maven-repository-metadata-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='backport-util-concurrent' name='backport-util-concurrent' version='3.1'>
+      <jar>/Users/rperez/.m2/repository/backport-util-concurrent/backport-util-concurrent/3.1/backport-util-concurrent-3.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-model' version='2.2.1'>
+      <jar>/Users/rperez/.m2/repository/org/apache/maven/maven-model/2.2.1/maven-model-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-project' version='2.2.1'>
+      <jar>/Users/rperez/.m2/repository/org/apache/maven/maven-project/2.2.1/maven-project-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-profile' version='2.2.1'>
+      <jar>/Users/rperez/.m2/repository/org/apache/maven/maven-profile/2.2.1/maven-profile-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-plugin-registry' version='2.2.1'>
+      <jar>/Users/rperez/.m2/repository/org/apache/maven/maven-plugin-registry/2.2.1/maven-plugin-registry-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-error-diagnostics' version='2.2.1'>
+      <jar>/Users/rperez/.m2/repository/org/apache/maven/maven-error-diagnostics/2.2.1/maven-error-diagnostics-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-settings' version='2.2.1'>
+      <jar>/Users/rperez/.m2/repository/org/apache/maven/maven-settings/2.2.1/maven-settings-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven.wagon' name='wagon-file' version='1.0-beta-6'>
+      <jar>/Users/rperez/.m2/repository/org/apache/maven/wagon/wagon-file/1.0-beta-6/wagon-file-1.0-beta-6.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven.wagon' name='wagon-http-lightweight' version='1.0-beta-6'>
+      <jar>/Users/rperez/.m2/repository/org/apache/maven/wagon/wagon-http-lightweight/1.0-beta-6/wagon-http-lightweight-1.0-beta-6.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven.wagon' name='wagon-http-shared' version='1.0-beta-6'>
+      <jar>/Users/rperez/.m2/repository/org/apache/maven/wagon/wagon-http-shared/1.0-beta-6/wagon-http-shared-1.0-beta-6.jar</jar>
+    </dependency>
+    <dependency group='nekohtml' name='xercesMinimal' version='1.9.6.2'>
+      <jar>/Users/rperez/.m2/repository/nekohtml/xercesMinimal/1.9.6.2/xercesMinimal-1.9.6.2.jar</jar>
+    </dependency>
+    <dependency group='nekohtml' name='nekohtml' version='1.9.6.2'>
+      <jar>/Users/rperez/.m2/repository/nekohtml/nekohtml/1.9.6.2/nekohtml-1.9.6.2.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven.wagon' name='wagon-provider-api' version='1.0-beta-6'>
+      <jar>/Users/rperez/.m2/repository/org/apache/maven/wagon/wagon-provider-api/1.0-beta-6/wagon-provider-api-1.0-beta-6.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='rest-client-builder' version='1.0.3'>
+      <jar>/Users/rperez/.m2/repository/org/grails/plugins/rest-client-builder/1.0.3/rest-client-builder-1.0.3.zip</jar>
+    </dependency>
+  </build>
+  <compile>
+    <dependency group='org.codehaus.groovy' name='groovy-all' version='2.1.9'>
+      <jar>/Users/rperez/.m2/repository/org/codehaus/groovy/groovy-all/2.1.9/groovy-all-2.1.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-rest' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-rest/2.3.9/grails-plugin-rest-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-controllers' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-controllers/2.3.9/grails-plugin-controllers-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='commons-beanutils' name='commons-beanutils' version='1.8.3'>
+      <jar>/Users/rperez/.m2/repository/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-validation' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-validation/2.3.9/grails-plugin-validation-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-async' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-async/2.3.9/grails-async-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.gpars' name='gpars' version='1.1.0'>
+      <jar>/Users/rperez/.m2/repository/org/codehaus/gpars/gpars/1.1.0/gpars-1.1.0.jar</jar>
+    </dependency>
+    <dependency group='org.multiverse' name='multiverse-core' version='0.7.0'>
+      <jar>/Users/rperez/.m2/repository/org/multiverse/multiverse-core/0.7.0/multiverse-core-0.7.0.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.jsr166-mirror' name='jsr166y' version='1.7.0'>
+      <jar>/Users/rperez/.m2/repository/org/codehaus/jsr166-mirror/jsr166y/1.7.0/jsr166y-1.7.0.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='jcl-over-slf4j' version='1.7.5'>
+      <jar>/Users/rperez/.m2/repository/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-datasource' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-datasource/2.3.9/grails-plugin-datasource-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-jdbc' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-jdbc/3.2.9.RELEASE/spring-jdbc-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat' name='tomcat-jdbc' version='7.0.50'>
+      <jar>/Users/rperez/.m2/repository/org/apache/tomcat/tomcat-jdbc/7.0.50/tomcat-jdbc-7.0.50.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat' name='tomcat-juli' version='7.0.50'>
+      <jar>/Users/rperez/.m2/repository/org/apache/tomcat/tomcat-juli/7.0.50/tomcat-juli-7.0.50.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-context' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-context/3.2.9.RELEASE/spring-context-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-aop' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-aop/3.2.9.RELEASE/spring-aop-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-expression' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-expression/3.2.9.RELEASE/spring-expression-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='slf4j-api' version='1.7.5'>
+      <jar>/Users/rperez/.m2/repository/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-web/2.3.9/grails-web-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='commons-collections' name='commons-collections' version='3.2.1'>
+      <jar>/Users/rperez/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-webmvc' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-webmvc/3.2.9.RELEASE/spring-webmvc-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='commons-fileupload' name='commons-fileupload' version='1.3.1'>
+      <jar>/Users/rperez/.m2/repository/commons-fileupload/commons-fileupload/1.3.1/commons-fileupload-1.3.1.jar</jar>
+    </dependency>
+    <dependency group='opensymphony' name='sitemesh' version='2.4'>
+      <jar>/Users/rperez/.m2/repository/opensymphony/sitemesh/2.4/sitemesh-2.4.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-context-support' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-context-support/3.2.9.RELEASE/spring-context-support-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-spring' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-spring/2.3.9/grails-spring-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='xpp3' name='xpp3_min' version='1.1.4c'>
+      <jar>/Users/rperez/.m2/repository/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c.jar</jar>
+    </dependency>
+    <dependency group='commons-el' name='commons-el' version='1.0'>
+      <jar>/Users/rperez/.m2/repository/commons-el/commons-el/1.0/commons-el-1.0.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-databinding' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-databinding/2.3.9/grails-databinding-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.objenesis' name='objenesis' version='1.4'>
+      <jar>/Users/rperez/.m2/repository/org/objenesis/objenesis/1.4/objenesis-1.4.jar</jar>
+    </dependency>
+    <dependency group='com.google.code.gson' name='gson' version='2.2.4'>
+      <jar>/Users/rperez/.m2/repository/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-databinding' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-databinding/2.3.9/grails-plugin-databinding-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-core' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-core/2.3.9/grails-core-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-web' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-web/3.2.9.RELEASE/spring-web-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='aopalliance' name='aopalliance' version='1.0'>
+      <jar>/Users/rperez/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar</jar>
+    </dependency>
+    <dependency group='commons-validator' name='commons-validator' version='1.3.1'>
+      <jar>/Users/rperez/.m2/repository/commons-validator/commons-validator/1.3.1/commons-validator-1.3.1.jar</jar>
+    </dependency>
+    <dependency group='org.hibernate.javax.persistence' name='hibernate-jpa-2.1-api' version='1.0.0.Final'>
+      <jar>/Users/rperez/.m2/repository/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-core' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-core/3.2.9.RELEASE/spring-core-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-beans' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-beans/3.2.9.RELEASE/spring-beans-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-bootstrap' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-bootstrap/2.3.9/grails-bootstrap-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-i18n' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-i18n/2.3.9/grails-plugin-i18n-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='commons-lang' name='commons-lang' version='2.6'>
+      <jar>/Users/rperez/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-filters' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-filters/2.3.9/grails-plugin-filters-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-gsp' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-gsp/2.3.9/grails-plugin-gsp-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-codecs' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-codecs/2.3.9/grails-plugin-codecs-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='commons-codec' name='commons-codec' version='1.6'>
+      <jar>/Users/rperez/.m2/repository/commons-codec/commons-codec/1.6/commons-codec-1.6.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-logging' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-logging/2.3.9/grails-logging-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-log4j' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-log4j/2.3.9/grails-plugin-log4j-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='jul-to-slf4j' version='1.7.5'>
+      <jar>/Users/rperez/.m2/repository/org/slf4j/jul-to-slf4j/1.7.5/jul-to-slf4j-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-services' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-services/2.3.9/grails-plugin-services-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-tx' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-tx/3.2.9.RELEASE/spring-tx-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-servlets' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-servlets/2.3.9/grails-plugin-servlets-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-url-mappings' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-url-mappings/2.3.9/grails-plugin-url-mappings-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='commons-io' name='commons-io' version='2.2'>
+      <jar>/Users/rperez/.m2/repository/commons-io/commons-io/2.2/commons-io-2.2.jar</jar>
+    </dependency>
+    <dependency group='com.googlecode.concurrentlinkedhashmap' name='concurrentlinkedhashmap-lru' version='1.3.1'>
+      <jar>/Users/rperez/.m2/repository/com/googlecode/concurrentlinkedhashmap/concurrentlinkedhashmap-lru/1.3.1/concurrentlinkedhashmap-lru-1.3.1.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-converters' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-converters/2.3.9/grails-plugin-converters-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-mimetypes' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-mimetypes/2.3.9/grails-plugin-mimetypes-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-domain-class' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-domain-class/2.3.9/grails-plugin-domain-class-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-simple' version='3.1.0.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-datastore-simple/3.1.0.RELEASE/grails-datastore-simple-3.1.0.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-core' version='3.1.0.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-datastore-core/3.1.0.RELEASE/grails-datastore-core-3.1.0.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='javax.transaction' name='jta' version='1.1'>
+      <jar>/Users/rperez/.m2/repository/javax/transaction/jta/1.1/jta-1.1.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-gorm' version='3.1.0.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-datastore-gorm/3.1.0.RELEASE/grails-datastore-gorm-3.1.0.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='redis' version='1.5.5'>
+      <jar>/Users/rperez/.m2/repository/org/grails/plugins/redis/1.5.5/redis-1.5.5.zip</jar>
+    </dependency>
+    <dependency group='redis.clients' name='jedis' version='2.4.2'>
+      <jar>/Users/rperez/.m2/repository/redis/clients/jedis/2.4.2/jedis-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.apache.commons' name='commons-pool2' version='2.0'>
+      <jar>/Users/rperez/.m2/repository/org/apache/commons/commons-pool2/2.0/commons-pool2-2.0.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='database-session' version='1.2.1'>
+      <jar>/Users/rperez/.m2/repository/org/grails/plugins/database-session/1.2.1/database-session-1.2.1.zip</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='webxml' version='1.4.1'>
+      <jar>/Users/rperez/.m2/repository/org/grails/plugins/webxml/1.4.1/webxml-1.4.1.zip</jar>
+    </dependency>
+  </compile>
+  <test>
+    <dependency group='javax.servlet' name='javax.servlet-api' version='3.0.1'>
+      <jar>/Users/rperez/.m2/repository/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.groovy' name='groovy-all' version='2.1.9'>
+      <jar>/Users/rperez/.m2/repository/org/codehaus/groovy/groovy-all/2.1.9/groovy-all-2.1.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-rest' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-rest/2.3.9/grails-plugin-rest-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-controllers' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-controllers/2.3.9/grails-plugin-controllers-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='commons-beanutils' name='commons-beanutils' version='1.8.3'>
+      <jar>/Users/rperez/.m2/repository/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-validation' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-validation/2.3.9/grails-plugin-validation-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-async' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-async/2.3.9/grails-async-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.gpars' name='gpars' version='1.1.0'>
+      <jar>/Users/rperez/.m2/repository/org/codehaus/gpars/gpars/1.1.0/gpars-1.1.0.jar</jar>
+    </dependency>
+    <dependency group='org.multiverse' name='multiverse-core' version='0.7.0'>
+      <jar>/Users/rperez/.m2/repository/org/multiverse/multiverse-core/0.7.0/multiverse-core-0.7.0.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.jsr166-mirror' name='jsr166y' version='1.7.0'>
+      <jar>/Users/rperez/.m2/repository/org/codehaus/jsr166-mirror/jsr166y/1.7.0/jsr166y-1.7.0.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='jcl-over-slf4j' version='1.7.5'>
+      <jar>/Users/rperez/.m2/repository/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-datasource' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-datasource/2.3.9/grails-plugin-datasource-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-jdbc' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-jdbc/3.2.9.RELEASE/spring-jdbc-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat.embed' name='tomcat-embed-logging-log4j' version='7.0.50'>
+      <jar>/Users/rperez/.m2/repository/org/apache/tomcat/embed/tomcat-embed-logging-log4j/7.0.50/tomcat-embed-logging-log4j-7.0.50.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat' name='tomcat-jdbc' version='7.0.50'>
+      <jar>/Users/rperez/.m2/repository/org/apache/tomcat/tomcat-jdbc/7.0.50/tomcat-jdbc-7.0.50.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat' name='tomcat-juli' version='7.0.50'>
+      <jar>/Users/rperez/.m2/repository/org/apache/tomcat/tomcat-juli/7.0.50/tomcat-juli-7.0.50.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-context' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-context/3.2.9.RELEASE/spring-context-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-aop' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-aop/3.2.9.RELEASE/spring-aop-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-expression' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-expression/3.2.9.RELEASE/spring-expression-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='slf4j-api' version='1.7.5'>
+      <jar>/Users/rperez/.m2/repository/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-web/2.3.9/grails-web-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='commons-collections' name='commons-collections' version='3.2.1'>
+      <jar>/Users/rperez/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar</jar>
+    </dependency>
+    <dependency group='taglibs' name='standard' version='1.1.2'>
+      <jar>/Users/rperez/.m2/repository/taglibs/standard/1.1.2/standard-1.1.2.jar</jar>
+    </dependency>
+    <dependency group='org.aspectj' name='aspectjweaver' version='1.7.4'>
+      <jar>/Users/rperez/.m2/repository/org/aspectj/aspectjweaver/1.7.4/aspectjweaver-1.7.4.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-webmvc' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-webmvc/3.2.9.RELEASE/spring-webmvc-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='commons-fileupload' name='commons-fileupload' version='1.3.1'>
+      <jar>/Users/rperez/.m2/repository/commons-fileupload/commons-fileupload/1.3.1/commons-fileupload-1.3.1.jar</jar>
+    </dependency>
+    <dependency group='opensymphony' name='sitemesh' version='2.4'>
+      <jar>/Users/rperez/.m2/repository/opensymphony/sitemesh/2.4/sitemesh-2.4.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-aspects' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-aspects/3.2.9.RELEASE/spring-aspects-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.aspectj' name='aspectjrt' version='1.7.4'>
+      <jar>/Users/rperez/.m2/repository/org/aspectj/aspectjrt/1.7.4/aspectjrt-1.7.4.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-context-support' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-context-support/3.2.9.RELEASE/spring-context-support-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-spring' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-spring/2.3.9/grails-spring-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='xpp3' name='xpp3_min' version='1.1.4c'>
+      <jar>/Users/rperez/.m2/repository/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c.jar</jar>
+    </dependency>
+    <dependency group='javax.servlet' name='jstl' version='1.1.2'>
+      <jar>/Users/rperez/.m2/repository/javax/servlet/jstl/1.1.2/jstl-1.1.2.jar</jar>
+    </dependency>
+    <dependency group='commons-el' name='commons-el' version='1.0'>
+      <jar>/Users/rperez/.m2/repository/commons-el/commons-el/1.0/commons-el-1.0.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-databinding' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-databinding/2.3.9/grails-databinding-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.objenesis' name='objenesis' version='1.4'>
+      <jar>/Users/rperez/.m2/repository/org/objenesis/objenesis/1.4/objenesis-1.4.jar</jar>
+    </dependency>
+    <dependency group='com.google.code.gson' name='gson' version='2.2.4'>
+      <jar>/Users/rperez/.m2/repository/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-databinding' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-databinding/2.3.9/grails-plugin-databinding-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-core' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-core/2.3.9/grails-core-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='xalan' name='serializer' version='2.7.1'>
+      <jar>/Users/rperez/.m2/repository/xalan/serializer/2.7.1/serializer-2.7.1.jar</jar>
+    </dependency>
+    <dependency group='oro' name='oro' version='2.0.8'>
+      <jar>/Users/rperez/.m2/repository/oro/oro/2.0.8/oro-2.0.8.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-web' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-web/3.2.9.RELEASE/spring-web-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='aopalliance' name='aopalliance' version='1.0'>
+      <jar>/Users/rperez/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar</jar>
+    </dependency>
+    <dependency group='asm' name='asm' version='3.3.1'>
+      <jar>/Users/rperez/.m2/repository/asm/asm/3.3.1/asm-3.3.1.jar</jar>
+    </dependency>
+    <dependency group='commons-validator' name='commons-validator' version='1.3.1'>
+      <jar>/Users/rperez/.m2/repository/commons-validator/commons-validator/1.3.1/commons-validator-1.3.1.jar</jar>
+    </dependency>
+    <dependency group='org.hibernate.javax.persistence' name='hibernate-jpa-2.1-api' version='1.0.0.Final'>
+      <jar>/Users/rperez/.m2/repository/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar</jar>
+    </dependency>
+    <dependency group='cglib' name='cglib' version='2.2.2'>
+      <jar>/Users/rperez/.m2/repository/cglib/cglib/2.2.2/cglib-2.2.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-core' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-core/3.2.9.RELEASE/spring-core-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-beans' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-beans/3.2.9.RELEASE/spring-beans-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-bootstrap' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-bootstrap/2.3.9/grails-bootstrap-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-i18n' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-i18n/2.3.9/grails-plugin-i18n-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='commons-lang' name='commons-lang' version='2.6'>
+      <jar>/Users/rperez/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-filters' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-filters/2.3.9/grails-plugin-filters-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-gsp' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-gsp/2.3.9/grails-plugin-gsp-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-codecs' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-codecs/2.3.9/grails-plugin-codecs-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='commons-codec' name='commons-codec' version='1.6'>
+      <jar>/Users/rperez/.m2/repository/commons-codec/commons-codec/1.6/commons-codec-1.6.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-logging' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-logging/2.3.9/grails-logging-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-log4j' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-log4j/2.3.9/grails-plugin-log4j-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='jul-to-slf4j' version='1.7.5'>
+      <jar>/Users/rperez/.m2/repository/org/slf4j/jul-to-slf4j/1.7.5/jul-to-slf4j-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-services' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-services/2.3.9/grails-plugin-services-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-tx' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-tx/3.2.9.RELEASE/spring-tx-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-servlets' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-servlets/2.3.9/grails-plugin-servlets-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-url-mappings' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-url-mappings/2.3.9/grails-plugin-url-mappings-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='commons-io' name='commons-io' version='2.2'>
+      <jar>/Users/rperez/.m2/repository/commons-io/commons-io/2.2/commons-io-2.2.jar</jar>
+    </dependency>
+    <dependency group='com.googlecode.concurrentlinkedhashmap' name='concurrentlinkedhashmap-lru' version='1.3.1'>
+      <jar>/Users/rperez/.m2/repository/com/googlecode/concurrentlinkedhashmap/concurrentlinkedhashmap-lru/1.3.1/concurrentlinkedhashmap-lru-1.3.1.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-testing' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-testing/2.3.9/grails-plugin-testing-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-converters' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-converters/2.3.9/grails-plugin-converters-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-test' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-test/2.3.9/grails-test-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-mimetypes' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-mimetypes/2.3.9/grails-plugin-mimetypes-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-domain-class' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-domain-class/2.3.9/grails-plugin-domain-class-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-simple' version='3.1.0.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-datastore-simple/3.1.0.RELEASE/grails-datastore-simple-3.1.0.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-core' version='3.1.0.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-datastore-core/3.1.0.RELEASE/grails-datastore-core-3.1.0.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='javax.transaction' name='jta' version='1.1'>
+      <jar>/Users/rperez/.m2/repository/javax/transaction/jta/1.1/jta-1.1.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-gorm' version='3.1.0.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-datastore-gorm/3.1.0.RELEASE/grails-datastore-gorm-3.1.0.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-test' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-test/3.2.9.RELEASE/spring-test-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.spockframework' name='spock-core' version='0.7-groovy-2.0'>
+      <jar>/Users/rperez/.m2/repository/org/spockframework/spock-core/0.7-groovy-2.0/spock-core-0.7-groovy-2.0.jar</jar>
+    </dependency>
+    <dependency group='org.hamcrest' name='hamcrest-core' version='1.3'>
+      <jar>/Users/rperez/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar</jar>
+    </dependency>
+    <dependency group='junit' name='junit' version='4.11'>
+      <jar>/Users/rperez/.m2/repository/junit/junit/4.11/junit-4.11.jar</jar>
+    </dependency>
+    <dependency group='com.h2database' name='h2' version='1.3.173'>
+      <jar>/Users/rperez/.m2/repository/com/h2database/h2/1.3.173/h2-1.3.173.jar</jar>
+    </dependency>
+    <dependency group='log4j' name='log4j' version='1.2.17'>
+      <jar>/Users/rperez/.m2/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-resources' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-resources/2.3.9/grails-resources-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='redis' version='1.5.5'>
+      <jar>/Users/rperez/.m2/repository/org/grails/plugins/redis/1.5.5/redis-1.5.5.zip</jar>
+    </dependency>
+    <dependency group='redis.clients' name='jedis' version='2.4.2'>
+      <jar>/Users/rperez/.m2/repository/redis/clients/jedis/2.4.2/jedis-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.apache.commons' name='commons-pool2' version='2.0'>
+      <jar>/Users/rperez/.m2/repository/org/apache/commons/commons-pool2/2.0/commons-pool2-2.0.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='database-session' version='1.2.1'>
+      <jar>/Users/rperez/.m2/repository/org/grails/plugins/database-session/1.2.1/database-session-1.2.1.zip</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='webxml' version='1.4.1'>
+      <jar>/Users/rperez/.m2/repository/org/grails/plugins/webxml/1.4.1/webxml-1.4.1.zip</jar>
+    </dependency>
+  </test>
+  <runtime>
+    <dependency group='org.codehaus.groovy' name='groovy-all' version='2.1.9'>
+      <jar>/Users/rperez/.m2/repository/org/codehaus/groovy/groovy-all/2.1.9/groovy-all-2.1.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-rest' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-rest/2.3.9/grails-plugin-rest-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-controllers' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-controllers/2.3.9/grails-plugin-controllers-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='commons-beanutils' name='commons-beanutils' version='1.8.3'>
+      <jar>/Users/rperez/.m2/repository/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-validation' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-validation/2.3.9/grails-plugin-validation-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-async' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-async/2.3.9/grails-async-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.gpars' name='gpars' version='1.1.0'>
+      <jar>/Users/rperez/.m2/repository/org/codehaus/gpars/gpars/1.1.0/gpars-1.1.0.jar</jar>
+    </dependency>
+    <dependency group='org.multiverse' name='multiverse-core' version='0.7.0'>
+      <jar>/Users/rperez/.m2/repository/org/multiverse/multiverse-core/0.7.0/multiverse-core-0.7.0.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.jsr166-mirror' name='jsr166y' version='1.7.0'>
+      <jar>/Users/rperez/.m2/repository/org/codehaus/jsr166-mirror/jsr166y/1.7.0/jsr166y-1.7.0.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='jcl-over-slf4j' version='1.7.5'>
+      <jar>/Users/rperez/.m2/repository/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-datasource' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-datasource/2.3.9/grails-plugin-datasource-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-jdbc' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-jdbc/3.2.9.RELEASE/spring-jdbc-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat.embed' name='tomcat-embed-logging-log4j' version='7.0.50'>
+      <jar>/Users/rperez/.m2/repository/org/apache/tomcat/embed/tomcat-embed-logging-log4j/7.0.50/tomcat-embed-logging-log4j-7.0.50.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat' name='tomcat-jdbc' version='7.0.50'>
+      <jar>/Users/rperez/.m2/repository/org/apache/tomcat/tomcat-jdbc/7.0.50/tomcat-jdbc-7.0.50.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat' name='tomcat-juli' version='7.0.50'>
+      <jar>/Users/rperez/.m2/repository/org/apache/tomcat/tomcat-juli/7.0.50/tomcat-juli-7.0.50.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-context' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-context/3.2.9.RELEASE/spring-context-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-aop' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-aop/3.2.9.RELEASE/spring-aop-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-expression' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-expression/3.2.9.RELEASE/spring-expression-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='slf4j-api' version='1.7.5'>
+      <jar>/Users/rperez/.m2/repository/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-web/2.3.9/grails-web-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='commons-collections' name='commons-collections' version='3.2.1'>
+      <jar>/Users/rperez/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar</jar>
+    </dependency>
+    <dependency group='taglibs' name='standard' version='1.1.2'>
+      <jar>/Users/rperez/.m2/repository/taglibs/standard/1.1.2/standard-1.1.2.jar</jar>
+    </dependency>
+    <dependency group='org.aspectj' name='aspectjweaver' version='1.7.4'>
+      <jar>/Users/rperez/.m2/repository/org/aspectj/aspectjweaver/1.7.4/aspectjweaver-1.7.4.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-webmvc' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-webmvc/3.2.9.RELEASE/spring-webmvc-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='commons-fileupload' name='commons-fileupload' version='1.3.1'>
+      <jar>/Users/rperez/.m2/repository/commons-fileupload/commons-fileupload/1.3.1/commons-fileupload-1.3.1.jar</jar>
+    </dependency>
+    <dependency group='opensymphony' name='sitemesh' version='2.4'>
+      <jar>/Users/rperez/.m2/repository/opensymphony/sitemesh/2.4/sitemesh-2.4.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-aspects' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-aspects/3.2.9.RELEASE/spring-aspects-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.aspectj' name='aspectjrt' version='1.7.4'>
+      <jar>/Users/rperez/.m2/repository/org/aspectj/aspectjrt/1.7.4/aspectjrt-1.7.4.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-context-support' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-context-support/3.2.9.RELEASE/spring-context-support-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-spring' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-spring/2.3.9/grails-spring-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='xpp3' name='xpp3_min' version='1.1.4c'>
+      <jar>/Users/rperez/.m2/repository/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c.jar</jar>
+    </dependency>
+    <dependency group='javax.servlet' name='jstl' version='1.1.2'>
+      <jar>/Users/rperez/.m2/repository/javax/servlet/jstl/1.1.2/jstl-1.1.2.jar</jar>
+    </dependency>
+    <dependency group='commons-el' name='commons-el' version='1.0'>
+      <jar>/Users/rperez/.m2/repository/commons-el/commons-el/1.0/commons-el-1.0.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-databinding' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-databinding/2.3.9/grails-databinding-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.objenesis' name='objenesis' version='1.4'>
+      <jar>/Users/rperez/.m2/repository/org/objenesis/objenesis/1.4/objenesis-1.4.jar</jar>
+    </dependency>
+    <dependency group='com.google.code.gson' name='gson' version='2.2.4'>
+      <jar>/Users/rperez/.m2/repository/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-databinding' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-databinding/2.3.9/grails-plugin-databinding-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-core' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-core/2.3.9/grails-core-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='xalan' name='serializer' version='2.7.1'>
+      <jar>/Users/rperez/.m2/repository/xalan/serializer/2.7.1/serializer-2.7.1.jar</jar>
+    </dependency>
+    <dependency group='oro' name='oro' version='2.0.8'>
+      <jar>/Users/rperez/.m2/repository/oro/oro/2.0.8/oro-2.0.8.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-web' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-web/3.2.9.RELEASE/spring-web-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='aopalliance' name='aopalliance' version='1.0'>
+      <jar>/Users/rperez/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar</jar>
+    </dependency>
+    <dependency group='asm' name='asm' version='3.3.1'>
+      <jar>/Users/rperez/.m2/repository/asm/asm/3.3.1/asm-3.3.1.jar</jar>
+    </dependency>
+    <dependency group='commons-validator' name='commons-validator' version='1.3.1'>
+      <jar>/Users/rperez/.m2/repository/commons-validator/commons-validator/1.3.1/commons-validator-1.3.1.jar</jar>
+    </dependency>
+    <dependency group='org.hibernate.javax.persistence' name='hibernate-jpa-2.1-api' version='1.0.0.Final'>
+      <jar>/Users/rperez/.m2/repository/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar</jar>
+    </dependency>
+    <dependency group='cglib' name='cglib' version='2.2.2'>
+      <jar>/Users/rperez/.m2/repository/cglib/cglib/2.2.2/cglib-2.2.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-core' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-core/3.2.9.RELEASE/spring-core-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-beans' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-beans/3.2.9.RELEASE/spring-beans-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-bootstrap' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-bootstrap/2.3.9/grails-bootstrap-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-i18n' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-i18n/2.3.9/grails-plugin-i18n-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='commons-lang' name='commons-lang' version='2.6'>
+      <jar>/Users/rperez/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-filters' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-filters/2.3.9/grails-plugin-filters-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-gsp' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-gsp/2.3.9/grails-plugin-gsp-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-codecs' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-codecs/2.3.9/grails-plugin-codecs-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='commons-codec' name='commons-codec' version='1.6'>
+      <jar>/Users/rperez/.m2/repository/commons-codec/commons-codec/1.6/commons-codec-1.6.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-logging' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-logging/2.3.9/grails-logging-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-log4j' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-log4j/2.3.9/grails-plugin-log4j-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='jul-to-slf4j' version='1.7.5'>
+      <jar>/Users/rperez/.m2/repository/org/slf4j/jul-to-slf4j/1.7.5/jul-to-slf4j-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-services' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-services/2.3.9/grails-plugin-services-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-tx' version='3.2.9.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/springframework/spring-tx/3.2.9.RELEASE/spring-tx-3.2.9.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-servlets' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-servlets/2.3.9/grails-plugin-servlets-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-url-mappings' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-url-mappings/2.3.9/grails-plugin-url-mappings-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='commons-io' name='commons-io' version='2.2'>
+      <jar>/Users/rperez/.m2/repository/commons-io/commons-io/2.2/commons-io-2.2.jar</jar>
+    </dependency>
+    <dependency group='com.googlecode.concurrentlinkedhashmap' name='concurrentlinkedhashmap-lru' version='1.3.1'>
+      <jar>/Users/rperez/.m2/repository/com/googlecode/concurrentlinkedhashmap/concurrentlinkedhashmap-lru/1.3.1/concurrentlinkedhashmap-lru-1.3.1.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-converters' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-converters/2.3.9/grails-plugin-converters-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-mimetypes' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-mimetypes/2.3.9/grails-plugin-mimetypes-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-domain-class' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-plugin-domain-class/2.3.9/grails-plugin-domain-class-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-simple' version='3.1.0.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-datastore-simple/3.1.0.RELEASE/grails-datastore-simple-3.1.0.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-core' version='3.1.0.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-datastore-core/3.1.0.RELEASE/grails-datastore-core-3.1.0.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='javax.transaction' name='jta' version='1.1'>
+      <jar>/Users/rperez/.m2/repository/javax/transaction/jta/1.1/jta-1.1.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-gorm' version='3.1.0.RELEASE'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-datastore-gorm/3.1.0.RELEASE/grails-datastore-gorm-3.1.0.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='com.h2database' name='h2' version='1.3.173'>
+      <jar>/Users/rperez/.m2/repository/com/h2database/h2/1.3.173/h2-1.3.173.jar</jar>
+    </dependency>
+    <dependency group='log4j' name='log4j' version='1.2.17'>
+      <jar>/Users/rperez/.m2/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-resources' version='2.3.9'>
+      <jar>/Users/rperez/.m2/repository/org/grails/grails-resources/2.3.9/grails-resources-2.3.9.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='redis' version='1.5.5'>
+      <jar>/Users/rperez/.m2/repository/org/grails/plugins/redis/1.5.5/redis-1.5.5.zip</jar>
+    </dependency>
+    <dependency group='redis.clients' name='jedis' version='2.4.2'>
+      <jar>/Users/rperez/.m2/repository/redis/clients/jedis/2.4.2/jedis-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.apache.commons' name='commons-pool2' version='2.0'>
+      <jar>/Users/rperez/.m2/repository/org/apache/commons/commons-pool2/2.0/commons-pool2-2.0.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='database-session' version='1.2.1'>
+      <jar>/Users/rperez/.m2/repository/org/grails/plugins/database-session/1.2.1/database-session-1.2.1.zip</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='webxml' version='1.4.1'>
+      <jar>/Users/rperez/.m2/repository/org/grails/plugins/webxml/1.4.1/webxml-1.4.1.zip</jar>
+    </dependency>
+  </runtime>
+  <provided>
+    <dependency group='javax.servlet' name='javax.servlet-api' version='3.0.1'>
+      <jar>/Users/rperez/.m2/repository/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar</jar>
+    </dependency>
+  </provided>
+</dependencies>
