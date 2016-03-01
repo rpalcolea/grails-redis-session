@@ -34,7 +34,10 @@ class RedisPersistentService implements Persister  {
 
                 def currentTime = System.currentTimeMillis()
 
-                redis.hmset("${SESSION_PREFIX}${sessionId}", [creationTime: currentTime.toString(), (INVALIDATED): "false", (MAX_INACTIVE_INTERVAL): "30"])
+                int sessionTimeout = grailsApplication.config.grails.plugin.redisdatabasesession.sessionTimeout
+                String maxInactiveInterval = sessionTimeout ? sessionTimeout.toString() : "30"
+
+                redis.hmset("${SESSION_PREFIX}${sessionId}", [creationTime: currentTime.toString(), (INVALIDATED): "false", (MAX_INACTIVE_INTERVAL): maxInactiveInterval])
 
                 //Adding the session to a zset
                 redis.zadd(LAST_ACCESSED_TIME_ZSET, currentTime, sessionId)
@@ -50,7 +53,7 @@ class RedisPersistentService implements Persister  {
     Object getAttribute(String sessionId, String key) throws InvalidatedSessionException {
         if (key == null) return null
 
-        if (GrailsApplicationAttributes.FLASH_SCOPE == key && !useJson()) {
+        if (GrailsApplicationAttributes.FLASH_SCOPE == key && storeFlashScopeWithRedis()) {
             // special case; use request scope since a new deserialized instance is created each time it's retrieved from the session
             def fs = SessionProxyFilter.request.getAttribute(GrailsApplicationAttributes.FLASH_SCOPE)
             if (fs != null) {
@@ -76,7 +79,7 @@ class RedisPersistentService implements Persister  {
 
             }
 
-            if (attribute != null && GrailsApplicationAttributes.FLASH_SCOPE == key && !useJson()) {
+            if (attribute != null && GrailsApplicationAttributes.FLASH_SCOPE == key && storeFlashScopeWithRedis()) {
                 SessionProxyFilter.request.setAttribute(GrailsApplicationAttributes.FLASH_SCOPE, attribute)
             }
 
@@ -94,7 +97,7 @@ class RedisPersistentService implements Persister  {
         }
 
         // special case; use request scope and don't store in session, the filter will set it in the session at the end of the request
-        if (value != null && GrailsApplicationAttributes.FLASH_SCOPE == key && !useJson()) {
+        if (value != null && GrailsApplicationAttributes.FLASH_SCOPE == key && storeFlashScopeWithRedis()) {
             if (value != GrailsApplicationAttributes.FLASH_SCOPE) {
                 SessionProxyFilter.request.setAttribute(GrailsApplicationAttributes.FLASH_SCOPE, value)
                 return
@@ -270,7 +273,7 @@ class RedisPersistentService implements Persister  {
         def deserializedObject
 
         try {
-            JsonParser parser = new JsonParser()
+            JsonParser parser = gsonService.getJsonParser()
             JsonObject jsonObject = parser.parse(serialized).getAsJsonObject()
             deserializedObject = gsonService.deserializeJson(jsonObject)
         } catch (Exception e) {
@@ -318,5 +321,13 @@ class RedisPersistentService implements Persister  {
     private boolean useJson() {
         def useJson = grailsApplication.config.grails.plugin.redisdatabasesession.useJson
         return useJson instanceof Boolean ? useJson : false
+    }
+
+    private boolean storeFlashScopeWithRedis() {
+        if (useJson()) {
+            def storeFlash = grailsApplication.config.grails.plugin.redisdatabasesession.storeFlashScopeWithRedis
+            return storeFlash instanceof Boolean ? storeFlash : false
+        }
+        return true
     }
 }

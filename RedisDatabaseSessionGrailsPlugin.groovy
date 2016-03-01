@@ -6,7 +6,7 @@ import org.codehaus.groovy.grails.web.servlet.mvc.SynchronizerTokensHolder
 import javax.servlet.http.HttpSession
 
 class RedisDatabaseSessionGrailsPlugin {
-    def version = "1.2"
+    def version = "1.2.1"
     def grailsVersion = "2.0 > *"
     def loadAfter = ["database-session", "redis"]
     def dependsOn = ["database-session":"1.2.1 > *", "redis":"1.5.2 > *"]
@@ -38,6 +38,8 @@ Stores HTTP sessions in a Redis data store.
 
         //SynchronizerTokensHolder doesn't explicitly save the holder to the session when generating a token.
         //This causes the synchronizer token to not be set in form tag lib, meaning withForm closures didn't work.
+        SynchronizerTokensHolder.metaClass.sessionId = null
+
         SynchronizerTokensHolder.metaClass.'static'.store = { HttpSession httpSession ->
             SynchronizerTokensHolder tokensHolder = httpSession.getAttribute(SynchronizerTokensHolder.HOLDER)
             if (!tokensHolder) {
@@ -45,7 +47,7 @@ Stores HTTP sessions in a Redis data store.
                 httpSession.setAttribute(SynchronizerTokensHolder.HOLDER, tokensHolder)
             }
 
-            tokensHolder.metaClass.session = httpSession
+            tokensHolder.sessionId = httpSession.id
 
             return tokensHolder
         }
@@ -55,8 +57,27 @@ Stores HTTP sessions in a Redis data store.
 
             getTokens(url).add(uuid)
 
-            session.setAttribute(SynchronizerTokensHolder.HOLDER, delegate)
-            return uuid
+            applicationContext.redisPersistentService.setAttribute(sessionId, SynchronizerTokensHolder.HOLDER, delegate)
+            return uuid.toString()
+        }
+
+        SynchronizerTokensHolder.metaClass.resetToken = { String url ->
+            currentTokens.remove(url)
+            applicationContext.redisPersistentService.setAttribute(sessionId, SynchronizerTokensHolder.HOLDER, delegate)
+        }
+
+        SynchronizerTokensHolder.metaClass.resetToken = { String url, String token ->
+            if (url && token) {
+                final Set set = getTokens(url)
+                try {
+                    set.remove UUID.fromString(token)
+                }
+                catch (IllegalArgumentException ignored) {}
+                if (set.isEmpty()) {
+                    currentTokens.remove(url)
+                }
+            }
+            applicationContext.redisPersistentService.setAttribute(sessionId, SynchronizerTokensHolder.HOLDER, delegate)
         }
     }
 

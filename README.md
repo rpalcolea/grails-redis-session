@@ -26,13 +26,21 @@ springConfig.addAlias 'databaseCleanupService', 'redisSessionCleanupService'
 
 For configuring, please refer to the [Database Session Plugin](http://grails.org/plugin/database-session) documents.
 
+To set the session timeout to something other than the default of 30 minutes, set the `sessionTimeout` flag in your application's `config.groovy` as follows:
+
+`grails.plugin.redisdatabasesession.sessionTimeout = 60`
+
 ## Json Serialization
 
 By default objects are serialized as `byte[]`, but JSON serialization is also available.
 
-To enable JSON serialization set the `useJson` flag to `true` in you application's `config.groovy` as follows:
+To enable JSON serialization set the `useJson` flag to `true` in your application's `config.groovy` as follows:
 
 `grails.plugin.redisdatabasesession.useJson = true`
+
+To store the grails flash scope in the Redis, rather than the default of the request, set `storeFlashScopeWithRedis` to true as follows:
+
+`grails.plugin.redisdatabasesession.storeFlashScopeWithRedis = true`
 
 **Warning:** While serialization for some commonly needed classes has been taken care of, it is possible that you may need to implement your own type adapters depending on what you are storing in your session.
 
