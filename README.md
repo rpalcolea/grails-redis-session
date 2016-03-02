@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rpalcolea/grails-redis-session.svg?branch=master)](https://travis-ci.org/rpalcolea/grails-redis-session)
+
 # Redis Database Session Grails Plugin
 
 ## Summary
