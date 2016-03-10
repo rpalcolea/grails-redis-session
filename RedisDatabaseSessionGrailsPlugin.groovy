@@ -6,7 +6,7 @@ import org.codehaus.groovy.grails.web.servlet.mvc.SynchronizerTokensHolder
 import javax.servlet.http.HttpSession
 
 class RedisDatabaseSessionGrailsPlugin {
-    def version = "1.2.1"
+    def version = "1.2.1-RC3"
     def grailsVersion = "2.0 > *"
     def loadAfter = ["database-session", "redis"]
     def dependsOn = ["database-session":"1.2.1 > *", "redis":"1.5.2 > *"]
@@ -53,6 +53,8 @@ Stores HTTP sessions in a Redis data store.
         }
 
         SynchronizerTokensHolder.metaClass.generateToken = { String url ->
+            resetToken(url)
+
             final UUID uuid = UUID.randomUUID()
 
             getTokens(url).add(uuid)
@@ -70,7 +72,7 @@ Stores HTTP sessions in a Redis data store.
             if (url && token) {
                 final Set set = getTokens(url)
                 try {
-                    set.remove UUID.fromString(token)
+                    set.remove(UUID.fromString(token))
                 }
                 catch (IllegalArgumentException ignored) {}
                 if (set.isEmpty()) {

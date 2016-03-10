@@ -14,7 +14,7 @@ class RedisSessionCleanupService {
     /**
      * Delete PersistentSessions where the last accessed time is older than a cutoff value.
      */
-    void cleanup() {
+    void cleanup(Boolean removeAllSessions = false) {
         def config = grailsApplication.config.grails.plugin.databasesession
 
         float maxAge = (config.cleanup.maxAge ?: 30) as Float
@@ -24,7 +24,11 @@ class RedisSessionCleanupService {
         Set<String> expiredSessions = []
 
         redisPersistentService.redisService.withRedis { Jedis redis ->
-            expiredSessions = redis.zrangeByScore(redisPersistentService.LAST_ACCESSED_TIME_ZSET, 0, age)
+            if (removeAllSessions) {
+                expiredSessions = redis.zrangeByScore(redisPersistentService.LAST_ACCESSED_TIME_ZSET, 0, System.currentTimeMillis())
+            } else {
+                expiredSessions = redis.zrangeByScore(redisPersistentService.LAST_ACCESSED_TIME_ZSET, 0, age)
+            }
         }
 
         expiredSessions.each { expiredSession ->

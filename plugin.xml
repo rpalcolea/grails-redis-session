@@ -1,4 +1,4 @@
-<plugin name='redis-database-session' version='1.2' grailsVersion='2.0 &gt; *'>
+<plugin name='redis-database-session' version='1.2.1-RC3' grailsVersion='2.0 &gt; *'>
   <author>Roberto Perez Alcolea</author>
   <authorEmail>roberto@perezalcolea.info</authorEmail>
   <title>Redis Session Plugin</title>

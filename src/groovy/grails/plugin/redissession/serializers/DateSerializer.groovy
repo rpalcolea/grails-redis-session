@@ -13,10 +13,12 @@ import java.text.SimpleDateFormat
 
 class DateSerializer implements JsonSerializer<Date>, JsonDeserializer<Date> {
 
+    DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy")
+
     JsonElement serialize(Date date, Type type, JsonSerializationContext context) {
         JsonObject result = new JsonObject()
         result.addProperty("type", "java.util.Date")
-        result.addProperty("value", date.toString())
+        result.addProperty("value", format.format(date))
         return result
     }
 
@@ -24,7 +26,6 @@ class DateSerializer implements JsonSerializer<Date>, JsonDeserializer<Date> {
         JsonObject jobject = json.getAsJsonObject()
         String dateString = jobject.get("value").getAsString()
 
-        DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy")
         return format.parse(dateString)
     }
 

@@ -56,9 +56,7 @@ class RedisPersistentService implements Persister  {
         if (GrailsApplicationAttributes.FLASH_SCOPE == key && !storeFlashScopeWithRedis()) {
             // special case; use request scope since a new deserialized instance is created each time it's retrieved from the session
             def fs = SessionProxyFilter.request.getAttribute(GrailsApplicationAttributes.FLASH_SCOPE)
-            if (fs != null) {
-                return fs
-            }
+            return fs
         }
 
         try {
@@ -105,6 +103,8 @@ class RedisPersistentService implements Persister  {
 
             // the filter set the value as the key, so retrieve it from the request
             value = SessionProxyFilter.request.getAttribute(GrailsApplicationAttributes.FLASH_SCOPE)
+            SessionProxyFilter.request.setAttribute(GrailsApplicationAttributes.FLASH_SCOPE, value)
+            return
         }
 
         try {
@@ -277,9 +277,15 @@ class RedisPersistentService implements Persister  {
             JsonObject jsonObject = parser.parse(serialized).getAsJsonObject()
             deserializedObject = gsonService.deserializeJson(jsonObject)
         } catch (Exception e) {
-            log.error("Unable to deserialize object as JSON.")
-            handleException(e)
-            return deserialize(serialized, true)
+            if (serialized instanceof Byte[]) {
+                log.error("Unable to deserialize object as JSON. Attempting byte array deserializaton. Serialized object is ${serialized.toString()}")
+                handleException(e)
+                return deserialize(serialized, true)
+            } else {
+                log.error("Unable to deserialize object as JSON. Serialized object is ${serialized.toString()}")
+                handleException(e)
+                return null
+            }
         }
 
         return deserializedObject
