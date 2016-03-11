@@ -30,6 +30,7 @@ class GsonService {
         builder.registerTypeAdapter(ArrayList.class, new ArrayListSerializer(ctx))
         builder.registerTypeAdapter(LinkedHashMap.class, new LinkedHashMapSerializer(ctx))
         builder.registerTypeAdapter(HashSet.class, new HashSetSerializer(ctx))
+        builder.registerTypeAdapter(ConfigObject.class, new ConfigObjectSerializer(ctx))
         builder.registerTypeAdapter(GrailsFlashScope.class, new GrailsFlashScopeSerializer(ctx))
         builder.registerTypeAdapter(SynchronizerTokensHolder.class, new SynchronizerTokensHolderSerializer(ctx))
         gson = builder.create()

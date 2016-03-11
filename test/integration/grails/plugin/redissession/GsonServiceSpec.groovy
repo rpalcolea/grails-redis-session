@@ -113,6 +113,27 @@ class GsonServiceSpec extends IntegrationSpec {
 
     }
 
+    void "test serialize configObject"() {
+        when:
+        def configObject = new ConfigObject()
+        configObject.put("test", "val")
+        def result = gsonService.serializeAsJson(configObject)
+
+        then:
+        result == '''{"type":"groovy.util.ConfigObject","value":"{\\"type\\":\\"java.util.LinkedHashMap\\",\\"value\\":\\"{\\\\\\"{\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"java.lang.String\\\\\\\\\\\\\\",\\\\\\\\\\\\\\"value\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"test\\\\\\\\\\\\\\"}\\\\\\":\\\\\\"{\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"java.lang.String\\\\\\\\\\\\\\",\\\\\\\\\\\\\\"value\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"val\\\\\\\\\\\\\\"}\\\\\\"}\\"}"}'''
+    }
+
+    void "test deserialize  configObject"() {
+        when:
+        JsonParser jsonParser = gsonService.getJsonParser()
+        def configObjectJson = jsonParser.parse("{\"type\":\"groovy.util.ConfigObject\",\"value\":\"{\\\"type\\\":\\\"java.util.LinkedHashMap\\\",\\\"value\\\":\\\"{\\\\\\\"{\\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"java.lang.String\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"value\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"test\\\\\\\\\\\\\\\"}\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"java.lang.String\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"value\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"val\\\\\\\\\\\\\\\"}\\\\\\\"}\\\"}\"}").getAsJsonObject()
+        def deserialized = gsonService.deserializeJson(configObjectJson)
+
+        then:
+        deserialized.getClass() == ConfigObject.class
+        deserialized.get("test") == "val"
+    }
+
     private buildJsonArray(ArrayList arrayList) {
         JsonArray arrayJson = new JsonArray()
         arrayList.each {
