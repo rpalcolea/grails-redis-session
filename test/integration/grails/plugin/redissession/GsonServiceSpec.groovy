@@ -108,7 +108,7 @@ class GsonServiceSpec extends IntegrationSpec {
         def deserialized = gsonService.deserializeJson(flashScopeJson)
 
         then:
-        deserialized.getClass() == GrailsFlashScope.class
+        deserialized.getClass() == RedisGrailsFlashScope.class
         deserialized.get("numberMessagesShown") == [10]
 
     }

@@ -7,6 +7,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.google.gson.JsonSerializationContext
 import com.google.gson.JsonSerializer
+import grails.plugin.redissession.RedisGrailsFlashScope
 import org.codehaus.groovy.grails.web.servlet.GrailsFlashScope
 import org.springframework.context.ApplicationContext
 
@@ -40,7 +41,7 @@ class GrailsFlashScopeSerializer implements JsonSerializer<GrailsFlashScope>, Js
 
     GrailsFlashScope deserialize(JsonElement json, Type type, JsonDeserializationContext context) {
 
-        GrailsFlashScope flashScope = new GrailsFlashScope()
+        RedisGrailsFlashScope flashScope = new RedisGrailsFlashScope()
 
         JsonParser jsonParser = gsonService.getJsonParser()
 
