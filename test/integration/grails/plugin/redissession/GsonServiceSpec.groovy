@@ -50,6 +50,7 @@ class GsonServiceSpec extends IntegrationSpec {
         [1,"b", 2l, false, null]                                    | '''{"type":"java.util.ArrayList","value":"["{\\"type\\":\\"java.lang.Integer\\",\\"value\\":1}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"b\\"}","{\\"type\\":\\"java.lang.Long\\",\\"value\\":2}","{\\"type\\":\\"java.lang.Boolean\\",\\"value\\":false}","{\\"type\\":\\"nullField\\"}"]"}'''
         [1:"test", "two": 2, 3l: false, "arrayVal": ["one",2]]      | '''{"type":"java.util.LinkedHashMap","value":"{"{\\"type\\":\\"java.lang.Integer\\",\\"value\\":1}":"{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"test\\"}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"two\\"}":"{\\"type\\":\\"java.lang.Integer\\",\\"value\\":2}","{\\"type\\":\\"java.lang.Long\\",\\"value\\":3}":"{\\"type\\":\\"java.lang.Boolean\\",\\"value\\":false}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"arrayVal\\"}":"{\\"type\\":\\"java.util.ArrayList\\",\\"value\\":\\"[\\\\\\"{\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"java.lang.String\\\\\\\\\\\\\\",\\\\\\\\\\\\\\"value\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"one\\\\\\\\\\\\\\"}\\\\\\",\\\\\\"{\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\":\\\\\\\\\\\\\\"java.lang.Integer\\\\\\\\\\\\\\",\\\\\\\\\\\\\\"value\\\\\\\\\\\\\\":2}\\\\\\"]\\"}"}"}'''
         new HashSet([1,"two", 2l, false])                           | '''{"type":"java.util.HashSet","value":"["{\\"type\\":\\"java.lang.Boolean\\",\\"value\\":false}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"two\\"}","{\\"type\\":\\"java.lang.Integer\\",\\"value\\":1}","{\\"type\\":\\"java.lang.Long\\",\\"value\\":2}"]"}'''
+        new LinkedHashSet([1,"two", 2l, false])                     | '''{"type":"java.util.LinkedHashSet","value":"["{\\"type\\":\\"java.lang.Integer\\",\\"value\\":1}","{\\"type\\":\\"java.lang.String\\",\\"value\\":\\"two\\"}","{\\"type\\":\\"java.lang.Long\\",\\"value\\":2}","{\\"type\\":\\"java.lang.Boolean\\",\\"value\\":false}"]"}'''
         new SynchronizerTokensHolder()                              | '''{"type":"org.codehaus.groovy.grails.web.servlet.mvc.SynchronizerTokensHolder","value":"{"currentTokens":{}}"}'''
     }
 
@@ -73,7 +74,8 @@ class GsonServiceSpec extends IntegrationSpec {
         "java.lang.Boolean"         | false                                                                     | false
         "java.util.ArrayList"       | buildJsonArray([1, "b", 2l, false, null])                                 | [1, "b", 2l, false, null]
         "java.util.LinkedHashMap"   | buildJsonHashMap([1:"test", "two": 2, 3l: false, "arrayVal": ["one",2]])  | [1: "test", "two": 2, 3l:false, "arrayVal": ["one",2]]
-        "java.util.HashSet"         | buildJsonArray([1,"two", 2l, false])                                      | new HashSet([1,"two", 2l, false])
+        "java.util.HashSet"         | buildJsonArray([1, "two", 2l, false])                                     | new HashSet([1, "two", 2l, false])
+        "java.util.LinkedHashSet"   | buildJsonArray([1, "two", 2l, false])                                     | new LinkedHashSet([1, "two", 2l, false])
     }
 
     void "test register type adapter"() {
