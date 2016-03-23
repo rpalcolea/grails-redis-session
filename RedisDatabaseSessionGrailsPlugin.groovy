@@ -6,7 +6,7 @@ import org.codehaus.groovy.grails.web.servlet.mvc.SynchronizerTokensHolder
 import javax.servlet.http.HttpSession
 
 class RedisDatabaseSessionGrailsPlugin {
-    def version = "1.2.1-RC8"
+    def version = "1.2.1-RC9"
     def grailsVersion = "2.0 > *"
     def loadAfter = ["database-session", "redis"]
     def dependsOn = ["database-session":"1.2.1 > *", "redis":"1.5.2 > *"]
@@ -32,59 +32,68 @@ Stores HTTP sessions in a Redis data store.
     }
 
     def doWithApplicationContext = { applicationContext ->
-        if (useJson(application.config)) {
-            applicationContext.gsonService.initialize(applicationContext)
-        }
+        if (pluginEnabled(application.config)) {
 
-        //SynchronizerTokensHolder doesn't explicitly save the holder to the session when generating a token.
-        //This causes the synchronizer token to not be set in form tag lib, meaning withForm closures didn't work.
-        SynchronizerTokensHolder.metaClass.sessionId = null
-
-        SynchronizerTokensHolder.metaClass.'static'.store = { HttpSession httpSession ->
-            SynchronizerTokensHolder tokensHolder = httpSession.getAttribute(SynchronizerTokensHolder.HOLDER)
-            if (!tokensHolder) {
-                tokensHolder = new SynchronizerTokensHolder()
-                httpSession.setAttribute(SynchronizerTokensHolder.HOLDER, tokensHolder)
+            if (useJson(application.config)) {
+                applicationContext.gsonService.initialize(applicationContext)
             }
 
-            tokensHolder.sessionId = httpSession.id
+            //SynchronizerTokensHolder doesn't explicitly save the holder to the session when generating a token.
+            //This causes the synchronizer token to not be set in form tag lib, meaning withForm closures didn't work.
+            SynchronizerTokensHolder.metaClass.sessionId = null
 
-            return tokensHolder
-        }
-
-        SynchronizerTokensHolder.metaClass.generateToken = { String url ->
-
-            final UUID uuid = UUID.randomUUID()
-
-            getTokens(url).add(uuid)
-
-            applicationContext.redisPersistentService.setAttribute(sessionId, SynchronizerTokensHolder.HOLDER, delegate)
-            return uuid.toString()
-        }
-
-        SynchronizerTokensHolder.metaClass.resetToken = { String url ->
-            currentTokens.remove(url)
-            applicationContext.redisPersistentService.setAttribute(sessionId, SynchronizerTokensHolder.HOLDER, delegate)
-        }
-
-        SynchronizerTokensHolder.metaClass.resetToken = { String url, String token ->
-            if (url && token) {
-                final Set set = getTokens(url)
-                try {
-                    set.remove(UUID.fromString(token))
+            SynchronizerTokensHolder.metaClass.'static'.store = { HttpSession httpSession ->
+                SynchronizerTokensHolder tokensHolder = httpSession.getAttribute(SynchronizerTokensHolder.HOLDER)
+                if (!tokensHolder) {
+                    tokensHolder = new SynchronizerTokensHolder()
+                    httpSession.setAttribute(SynchronizerTokensHolder.HOLDER, tokensHolder)
                 }
-                catch (IllegalArgumentException ignored) {}
-                if (set.isEmpty()) {
-                    currentTokens.remove(url)
-                }
+
+                tokensHolder.sessionId = httpSession.id
+
+                return tokensHolder
             }
-            applicationContext.redisPersistentService.setAttribute(sessionId, SynchronizerTokensHolder.HOLDER, delegate)
+
+            SynchronizerTokensHolder.metaClass.generateToken = { String url ->
+
+                final UUID uuid = UUID.randomUUID()
+
+                getTokens(url).add(uuid)
+
+                applicationContext.redisPersistentService.setAttribute(sessionId, SynchronizerTokensHolder.HOLDER, delegate)
+                return uuid.toString()
+            }
+
+            SynchronizerTokensHolder.metaClass.resetToken = { String url ->
+                currentTokens.remove(url)
+                applicationContext.redisPersistentService.setAttribute(sessionId, SynchronizerTokensHolder.HOLDER, delegate)
+            }
+
+            SynchronizerTokensHolder.metaClass.resetToken = { String url, String token ->
+                if (url && token) {
+                    final Set set = getTokens(url)
+                    try {
+                        set.remove(UUID.fromString(token))
+                    }
+                    catch (IllegalArgumentException ignored) {
+                    }
+                    if (set.isEmpty()) {
+                        currentTokens.remove(url)
+                    }
+                }
+                applicationContext.redisPersistentService.setAttribute(sessionId, SynchronizerTokensHolder.HOLDER, delegate)
+            }
         }
     }
 
     private boolean useJson(config) {
         def enabled = config.grails.plugin.redisdatabasesession.useJson
-        enabled instanceof Boolean ?: false
+        enabled instanceof Boolean ? enabled : false
+    }
+
+    private boolean pluginEnabled(config) {
+        def enabled = config.grails.plugin.databasesession.enabled
+        enabled instanceof Boolean ? enabled : false
     }
 
 }
