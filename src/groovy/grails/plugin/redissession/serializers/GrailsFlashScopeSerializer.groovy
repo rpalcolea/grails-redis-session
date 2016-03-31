@@ -7,6 +7,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.google.gson.JsonSerializationContext
 import com.google.gson.JsonSerializer
+import grails.plugin.redissession.RedisGrailsFlashScope
 import org.codehaus.groovy.grails.web.servlet.GrailsFlashScope
 import org.springframework.context.ApplicationContext
 
@@ -26,30 +27,34 @@ class GrailsFlashScopeSerializer implements JsonSerializer<GrailsFlashScope>, Js
         JsonObject result = new JsonObject()
         result.addProperty("type", "org.codehaus.groovy.grails.web.servlet.GrailsFlashScope")
 
-        LinkedHashMap values = [:]
+        flashScope = flashScope as RedisGrailsFlashScope
 
-        flashScope.keySet().each {
-            values.put(it, flashScope.get(it))
-        }
+        LinkedHashMap current = flashScope.getCurrent() as LinkedHashMap ?: [:]
+        LinkedHashMap next = flashScope.getNext() as LinkedHashMap ?: [:]
 
-        String mapJson = gsonService.serializeAsJson(values)
-        result.addProperty("value", mapJson)
+        String currentMap = gsonService.serializeAsJson(current)
+        String nextMap = gsonService.serializeAsJson(next)
+
+        result.addProperty("currentMap", currentMap)
+        result.addProperty("nextMap", nextMap)
 
         return result
     }
 
     GrailsFlashScope deserialize(JsonElement json, Type type, JsonDeserializationContext context) {
 
-        GrailsFlashScope flashScope = new GrailsFlashScope()
+        RedisGrailsFlashScope flashScope = new RedisGrailsFlashScope()
 
         JsonParser jsonParser = gsonService.getJsonParser()
 
-        JsonObject valueObject = jsonParser.parse(json.getAsJsonObject().get("value").value).getAsJsonObject()
-        LinkedHashMap deserialized = gsonService.deserializeJson(valueObject)
+        JsonObject currentValueObject = jsonParser.parse(json.getAsJsonObject().get("currentMap").value).getAsJsonObject()
+        JsonObject nextValueObject = jsonParser.parse(json.getAsJsonObject().get("nextMap").value).getAsJsonObject()
 
-        deserialized.each { key, value ->
-            flashScope.put(key, value)
-        }
+        LinkedHashMap current = gsonService.deserializeJson(currentValueObject)
+        LinkedHashMap next = gsonService.deserializeJson(nextValueObject)
+
+        flashScope.setCurrent(current)
+        flashScope.setNext(next)
 
         return flashScope
     }

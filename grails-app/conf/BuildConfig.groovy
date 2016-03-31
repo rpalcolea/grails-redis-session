@@ -23,7 +23,7 @@ grails.project.dependency.resolution = {
             export = false
             excludes "svn"
         }
-        compile(":redis:1.5.5", ":database-session:1.2.1", ":webxml:1.4.1")        {
+        compile(":redis:1.6.6", ":database-session:1.2.1", ":webxml:1.4.1")        {
             excludes "svn"
         }
 

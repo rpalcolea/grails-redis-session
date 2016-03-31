@@ -43,8 +43,7 @@ class LinkedHashMapSerializer implements JsonSerializer<LinkedHashMap>, JsonDese
 
         JsonParser jsonParser = gsonService.getJsonParser()
 
-        String hashMapString = serializedObject.get("value").value
-        JsonObject jsonObject = jsonParser.parse(hashMapString)
+        JsonObject jsonObject = jsonParser.parse(json.getAsJsonObject().get("value").value).getAsJsonObject()
 
         jsonObject.entrySet().each {
             String keyString = it.key

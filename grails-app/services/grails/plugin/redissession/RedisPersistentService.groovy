@@ -53,7 +53,7 @@ class RedisPersistentService implements Persister  {
     Object getAttribute(String sessionId, String key) throws InvalidatedSessionException {
         if (key == null) return null
 
-        if (GrailsApplicationAttributes.FLASH_SCOPE == key && storeFlashScopeWithRedis()) {
+        if (GrailsApplicationAttributes.FLASH_SCOPE == key && !storeFlashScopeWithRedis()) {
             // special case; use request scope since a new deserialized instance is created each time it's retrieved from the session
             def fs = SessionProxyFilter.request.getAttribute(GrailsApplicationAttributes.FLASH_SCOPE)
             if (fs != null) {
@@ -79,7 +79,7 @@ class RedisPersistentService implements Persister  {
 
             }
 
-            if (attribute != null && GrailsApplicationAttributes.FLASH_SCOPE == key && storeFlashScopeWithRedis()) {
+            if (attribute != null && GrailsApplicationAttributes.FLASH_SCOPE == key && !storeFlashScopeWithRedis()) {
                 SessionProxyFilter.request.setAttribute(GrailsApplicationAttributes.FLASH_SCOPE, attribute)
             }
 
@@ -97,7 +97,7 @@ class RedisPersistentService implements Persister  {
         }
 
         // special case; use request scope and don't store in session, the filter will set it in the session at the end of the request
-        if (value != null && GrailsApplicationAttributes.FLASH_SCOPE == key && storeFlashScopeWithRedis()) {
+        if (value != null && GrailsApplicationAttributes.FLASH_SCOPE == key && !storeFlashScopeWithRedis()) {
             if (value != GrailsApplicationAttributes.FLASH_SCOPE) {
                 SessionProxyFilter.request.setAttribute(GrailsApplicationAttributes.FLASH_SCOPE, value)
                 return
@@ -277,9 +277,15 @@ class RedisPersistentService implements Persister  {
             JsonObject jsonObject = parser.parse(serialized).getAsJsonObject()
             deserializedObject = gsonService.deserializeJson(jsonObject)
         } catch (Exception e) {
-            log.error("Unable to deserialize object as JSON.")
-            handleException(e)
-            return deserialize(serialized, true)
+            if (serialized instanceof Byte[]) {
+                log.error("Unable to deserialize object as JSON. Attempting byte array deserializaton. Serialized object is ${serialized.toString()}")
+                handleException(e)
+                return deserialize(serialized, true)
+            } else {
+                log.error("Unable to deserialize object as JSON. Serialized object is ${serialized.toString()}")
+                handleException(e)
+                return null
+            }
         }
 
         return deserializedObject
