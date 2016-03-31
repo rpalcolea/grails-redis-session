@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/rpalcolea/grails-redis-session.svg?branch=master)](https://travis-ci.org/rpalcolea/grails-redis-session)
+[![Build Status](https://snap-ci.com/rpalcolea/grails-redis-session/branch/master/build_image)](https://snap-ci.com/rpalcolea/grails-redis-session/branch/master)
+
 # Redis Database Session Grails Plugin
 
 ## Summary
@@ -79,6 +82,9 @@ redisDatabaseSessionGsonService.registerTypeAdapter(Double.class, new DoubleSeri
 ```
 
 ## Authors
-[Roberto Perez Alcolea](http://blog.perezalcolea.info)
+[Roberto Perez Alcolea](http://www.perezalcolea.info)
+
+[Brit Indrelie](http://www.objectpartners.com)
 
 Raj Govindarajan
+

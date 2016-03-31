@@ -1,0 +1,8 @@
+language: groovy
+sudo: false
+jdk:
+  - oraclejdk7
+script:
+  - ./grailsw refresh-dependencies
+  - ./grailsw compile
+  - ./grailsw test-app
