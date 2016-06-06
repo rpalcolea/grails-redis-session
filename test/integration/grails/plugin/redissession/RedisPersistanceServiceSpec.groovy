@@ -88,5 +88,21 @@ class RedisPersistanceServiceSpec extends IntegrationSpec {
         keys.size() == 1
         keys.contains(key)
     }
+
+    void "test removeAttribute"() {
+        given:
+        applicationContext.redisPersistentService.create(SESSION_ID)
+        String key = 'key'
+        String value = 'value'
+
+        when:
+        applicationContext.redisPersistentService.setAttribute(SESSION_ID, key, value)
+        String storedValue = applicationContext.redisPersistentService.getAttribute(SESSION_ID, key)
+        applicationContext.redisPersistentService.removeAttribute(SESSION_ID, key)
+
+        then:
+        storedValue == value
+        applicationContext.redisPersistentService.getAttribute(SESSION_ID, key) == null
+    }
 }
 

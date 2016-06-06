@@ -76,7 +76,7 @@ class RedisPersistentService implements Persister  {
                 //Updating the session last accessed time in the zset
                 redis.zadd(LAST_ACCESSED_TIME_ZSET, System.currentTimeMillis(), sessionId)
 
-                def serializedAttribute = redis.hget((serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}")), serialize(key))
+                def serializedAttribute = redis.hget(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"), serialize(key))
                 attribute = deserialize(serializedAttribute)
             }
 
@@ -135,7 +135,9 @@ class RedisPersistentService implements Persister  {
         try {
             redisService.withRedis { Jedis redis ->
                 if (redis.exists(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"))) {
-                    redis.hdel(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"), serialize(key))
+                    // redis.hdel(byte[] key, byte[]... fields) cannot be called with just one field!
+                    byte[] serialzedKey = serialize(key)
+                    redis.hdel(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"), serialzedKey, serialzedKey)
                 }
             }
         }
@@ -151,7 +153,7 @@ class RedisPersistentService implements Persister  {
         try {
             redisService.withRedis { Jedis redis ->
                 if (redis.exists(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"))) {
-                    result = redis.hkeys((serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}")))
+                    result = redis.hkeys(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"))
                 }
             }
         }
