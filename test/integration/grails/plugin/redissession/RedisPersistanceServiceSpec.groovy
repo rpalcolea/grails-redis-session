@@ -1,15 +1,27 @@
 package grails.plugin.redissession
 
+import grails.plugin.redissession.redis.TestRedisServiceFactory
 import grails.test.spock.IntegrationSpec
 
+/**
+ * RedisPersistanceService tests
+ *
+ * @author Daniel Muehlbachler
+ */
 class RedisPersistanceServiceSpec extends IntegrationSpec {
 
     private String SESSION_ID = "sessionId"
 
+    def redisService
+
     def setup() {
+        redisService = TestRedisServiceFactory.getInstance()
+        applicationContext.redisPersistentService.redisService = redisService
     }
 
     def cleanup() {
+        redisService.flushDB()
+        applicationContext.grailsApplication.config.grails.plugin.redisdatabasesession.sessionTimeout = null
     }
 
     void "test create default session"() {
