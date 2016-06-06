@@ -19,6 +19,7 @@ class RedisPersistentService implements Persister  {
     def grailsApplication
     def gsonService
 
+    protected static final int DEFAULT_MAX_INACTIVE_INTERVAL = 30
     private static final String MAX_INACTIVE_INTERVAL = "maxInactiveInterval"
     private static final String INVALIDATED = "invalidated"
     private static final String SESSION_ATTRIBUTES_PREFIX = "session_attributes:"
@@ -34,15 +35,14 @@ class RedisPersistentService implements Persister  {
 
                 def currentTime = System.currentTimeMillis()
 
-                int sessionTimeout = grailsApplication.config.grails.plugin.redisdatabasesession.sessionTimeout
-                String maxInactiveInterval = sessionTimeout ? sessionTimeout.toString() : "30"
+                def sessionTimeoutRaw = grailsApplication.config.grails.plugin.redisdatabasesession.sessionTimeout
+                int sessionTimeout = sessionTimeoutRaw instanceof Number ? sessionTimeoutRaw as int : DEFAULT_MAX_INACTIVE_INTERVAL
+                String maxInactiveInterval = sessionTimeout.toString()
 
                 redis.hmset("${SESSION_PREFIX}${sessionId}", [creationTime: currentTime.toString(), (INVALIDATED): "false", (MAX_INACTIVE_INTERVAL): maxInactiveInterval])
 
                 //Adding the session to a zset
                 redis.zadd(LAST_ACCESSED_TIME_ZSET, currentTime, sessionId)
-
-
             }
         }
         catch (e) {
@@ -51,7 +51,9 @@ class RedisPersistentService implements Persister  {
     }
 
     Object getAttribute(String sessionId, String key) throws InvalidatedSessionException {
-        if (key == null) return null
+        if (key == null) {
+            return null
+        }
 
         if (GrailsApplicationAttributes.FLASH_SCOPE == key && !storeFlashScopeWithRedis()) {
             // special case; use request scope since a new deserialized instance is created each time it's retrieved from the session
@@ -61,9 +63,9 @@ class RedisPersistentService implements Persister  {
             }
         }
 
-        try {
-            def attribute
+        def attribute = null
 
+        try {
             redisService.withRedis { Jedis redis ->
                 def sessionProperties = redis.hgetAll("${SESSION_PREFIX}${sessionId}")
 
@@ -76,18 +78,17 @@ class RedisPersistentService implements Persister  {
 
                 def serializedAttribute = redis.hget((serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}")), serialize(key))
                 attribute = deserialize(serializedAttribute)
-
             }
 
             if (attribute != null && GrailsApplicationAttributes.FLASH_SCOPE == key && !storeFlashScopeWithRedis()) {
                 SessionProxyFilter.request.setAttribute(GrailsApplicationAttributes.FLASH_SCOPE, attribute)
             }
-
-            return attribute
         }
         catch (e) {
             handleException e
         }
+
+        return attribute
     }
 
     void setAttribute(String sessionId, String key, Object value) throws InvalidatedSessionException {
@@ -118,7 +119,6 @@ class RedisPersistentService implements Persister  {
                 //Updating the session last accessed time in the zset
                 redis.zadd(LAST_ACCESSED_TIME_ZSET, System.currentTimeMillis(), sessionId)
                 redis.hset(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"), serialize(key), serialize(value))
-
             }
         }
         catch (e) {
@@ -128,12 +128,15 @@ class RedisPersistentService implements Persister  {
     }
 
     void removeAttribute(String sessionId, String key) throws InvalidatedSessionException {
-        if (key == null) return
+        if (key == null) {
+            return
+        }
 
         try {
             redisService.withRedis { Jedis redis ->
-                if(redis.exists("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"))
+                if (redis.exists(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"))) {
                     redis.hdel(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"), serialize(key))
+                }
             }
         }
         catch (e) {
@@ -143,22 +146,24 @@ class RedisPersistentService implements Persister  {
     }
 
     List<String> getAttributeNames(String sessionId) throws InvalidatedSessionException {
+        def result = []
+
         try {
-            List<String> result = []
             redisService.withRedis { Jedis redis ->
-                if(redis.exists("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"))
+                if (redis.exists(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"))) {
                     result = redis.hkeys((serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}")))
+                }
             }
-            return result.collect { deserialize(it) }
         }
         catch (e) {
             handleException e
         }
+
+        return result.collect { deserialize(it) } as List<String>
     }
 
     void invalidate(String sessionId) {
         try {
-
             def conf = grailsApplication.config.grails.plugin.databasesession
             def deleteInvalidSessions = conf.deleteInvalidSessions ?: false
             redisService.withRedis { Jedis redis ->
@@ -190,7 +195,6 @@ class RedisPersistentService implements Persister  {
 
     void setMaxInactiveInterval(String sessionId, int interval) throws InvalidatedSessionException {
         redisService.withRedis { Jedis redis ->
-
             def sessionProperties = redis.hgetAll("${SESSION_PREFIX}${sessionId}")
             Long lastAccessedTime = redis.zscore(LAST_ACCESSED_TIME_ZSET, sessionId)?.toLong()
             checkInvalidated(sessionProperties.get(INVALIDATED), lastAccessedTime, sessionProperties.get(MAX_INACTIVE_INTERVAL))
@@ -203,7 +207,7 @@ class RedisPersistentService implements Persister  {
     }
 
     int getMaxInactiveInterval(String sessionId) throws InvalidatedSessionException {
-        int maxInterval
+        int maxInterval = DEFAULT_MAX_INACTIVE_INTERVAL
         redisService.withRedis { Jedis redis ->
             def sessionProperties = redis.hgetAll("${SESSION_PREFIX}${sessionId}")
             Long lastAccessedTime = redis.zscore(LAST_ACCESSED_TIME_ZSET, sessionId)?.toLong()
@@ -215,8 +219,9 @@ class RedisPersistentService implements Persister  {
 
     boolean checkInvalidated(def invalidated, def lastAccessedTime, def maxInactiveInterval) {
         boolean result = _isValid(invalidated, lastAccessedTime, maxInactiveInterval)
-        if(!result)
+        if (!result) {
             throw new InvalidatedSessionException()
+        }
         return result
     }
 
@@ -225,10 +230,11 @@ class RedisPersistentService implements Persister  {
         redisService.withRedis { Jedis redis ->
             def sessionProperties = redis.hgetAll("${SESSION_PREFIX}${sessionId}")
             Long lastAccessedTime = redis.zscore(LAST_ACCESSED_TIME_ZSET, sessionId)?.toLong()
-            if(sessionProperties && lastAccessedTime)
+            if (sessionProperties && lastAccessedTime) {
                 return _isValid(sessionProperties.get(INVALIDATED), lastAccessedTime, sessionProperties.get(MAX_INACTIVE_INTERVAL))
-            else
+            } else {
                 return false
+            }
         }
     }
 
