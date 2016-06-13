@@ -13,7 +13,7 @@ import redis.clients.jedis.Jedis
  * @author Roberto Perez
  * @author Raj Govindarajan
  */
-class RedisPersistentService implements Persister  {
+class RedisPersistentService implements Persister {
     static transactional = false
     def redisService
     def grailsApplication
@@ -58,9 +58,7 @@ class RedisPersistentService implements Persister  {
         if (GrailsApplicationAttributes.FLASH_SCOPE == key && !storeFlashScopeWithRedis()) {
             // special case; use request scope since a new deserialized instance is created each time it's retrieved from the session
             def fs = SessionProxyFilter.request.getAttribute(GrailsApplicationAttributes.FLASH_SCOPE)
-            if (fs != null) {
-                return fs
-            }
+            return fs
         }
 
         def attribute = null
@@ -186,7 +184,7 @@ class RedisPersistentService implements Persister  {
     }
 
     long getLastAccessedTime(String sessionId) throws InvalidatedSessionException {
-        Long lastAccessedTime  = null
+        Long lastAccessedTime = null
         redisService.withRedis { Jedis redis ->
             def sessionProperties = redis.hgetAll("${SESSION_PREFIX}${sessionId}")
             lastAccessedTime = redis.zscore(LAST_ACCESSED_TIME_ZSET, sessionId)?.toLong()
