@@ -340,6 +340,6 @@ class RedisPersistentService implements Persister {
             def storeFlash = grailsApplication.config.grails.plugin.redisdatabasesession.storeFlashScopeWithRedis
             return storeFlash instanceof Boolean ? storeFlash : false
         }
-        return true
+        return false
     }
 }
