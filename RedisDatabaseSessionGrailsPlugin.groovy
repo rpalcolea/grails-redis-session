@@ -24,8 +24,10 @@ Stores HTTP sessions in a Redis data store.
 
 
     def doWithSpring = {
-        springConfig.addAlias 'gormPersisterService', 'redisPersistentService'
-        springConfig.addAlias 'databaseCleanupService', 'redisSessionCleanupService'
+        if (pluginEnabled(application.config)) {
+            springConfig.addAlias 'gormPersisterService', 'redisPersistentService'
+            springConfig.addAlias 'databaseCleanupService', 'redisSessionCleanupService'
+        }
     }
 
     def doWithApplicationContext = { applicationContext ->
