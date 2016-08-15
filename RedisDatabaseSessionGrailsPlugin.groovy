@@ -1,12 +1,9 @@
-import grails.plugin.redissession.RedisPersistentService
-import grails.plugin.redissession.RedisSessionCleanupService
-import grails.plugin.databasesession.SessionProxyFilter
 import org.codehaus.groovy.grails.web.servlet.mvc.SynchronizerTokensHolder
 
 import javax.servlet.http.HttpSession
 
 class RedisDatabaseSessionGrailsPlugin {
-    def version = "1.2.2"
+    def version = "1.2.3"
     def grailsVersion = "2.0 > *"
     def loadAfter = ["database-session", "redis"]
     def dependsOn = ["database-session":"1.2.1 > *", "redis":"1.5.2 > *"]
