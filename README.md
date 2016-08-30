@@ -1,6 +1,5 @@
 
 [![Build Status](https://travis-ci.org/rpalcolea/grails-redis-session.svg?branch=master)](https://travis-ci.org/rpalcolea/grails-redis-session)
-[![Build Status](https://snap-ci.com/rpalcolea/grails-redis-session/branch/master/build_image)](https://snap-ci.com/rpalcolea/grails-redis-session/branch/master)
 [![Slack Signup](http://slack-signup.grails.org/badge.svg)](http://slack-signup.grails.org)
 
 # Redis Database Session Grails Plugin
@@ -83,7 +82,7 @@ def redisDatabaseSessionGsonService //autowires our plugin's GsonService
 redisDatabaseSessionGsonService.registerTypeAdapter(Double.class, new DoubleSerializer())
 ```
 
-## Authors
+## Contributors
 [Roberto Perez Alcolea](http://www.perezalcolea.info)
 
 [Brit Indrelie](http://www.objectpartners.com)
