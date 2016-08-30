@@ -58,7 +58,9 @@ class RedisPersistentService implements Persister {
         if (GrailsApplicationAttributes.FLASH_SCOPE == key && !storeFlashScopeWithRedis()) {
             // special case; use request scope since a new deserialized instance is created each time it's retrieved from the session
             def fs = SessionProxyFilter.request.getAttribute(GrailsApplicationAttributes.FLASH_SCOPE)
-            return fs
+            if (fs != null) {
+                return fs
+            }
         }
 
         def attribute = null
