@@ -19,7 +19,7 @@ This plugin lets you store HTTP session data in a redis store using [Database Se
 
 This contains a RedisPersistentService.groovy with the persistence logic and RedisSessionCleanupService.groovy for cleanup sessions.
 
-It registers two aliases inside the doWithSpring closure. With this, it can work with the existing Proxy Session Filter, SessionFilters (for flash scope) and DatabaseCleanupJob
+It registers two aliases inside the doWithSpring closure if the plugin is enabled. With this, it can work with the existing Proxy Session Filter, SessionFilters (for flash scope) and DatabaseCleanupJob
 
 ```groovy
 springConfig.addAlias 'gormPersisterService', 'redisPersistentService'
