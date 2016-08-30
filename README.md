@@ -88,6 +88,8 @@ redisDatabaseSessionGsonService.registerTypeAdapter(Double.class, new DoubleSeri
 
 [Brit Indrelie](http://www.objectpartners.com)
 
+[Daniel Mühlbachler](http://www.niftyside.com/)
+
 Raj Govindarajan
 
 ## Sponsors
