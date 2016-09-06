@@ -13,6 +13,7 @@ import org.springframework.context.ApplicationContext
 import java.lang.reflect.Type
 
 class GsonService {
+    static transactional = false
 
     Gson gson
     GsonBuilder builder = new GsonBuilder()
