@@ -136,7 +136,8 @@ class RedisPersistentService implements Persister {
             redisService.withRedis { Jedis redis ->
                 if (redis.exists(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"))) {
                     // redis.hdel(byte[] key, byte[]... fields) cannot be called with just one field!
-                    byte[] serialzedKey = serialize(key)
+					//Note: output of serialize json can be String or byte[] based on value of useJson()
+                    def serialzedKey = serialize(key)
                     redis.hdel(serialize("${SESSION_ATTRIBUTES_PREFIX}${sessionId}"), serialzedKey, serialzedKey)
                 }
             }
